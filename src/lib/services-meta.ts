@@ -61,6 +61,10 @@ export const SERVICE_META: Record<string, ServiceMeta> = {
       "Intervention soignée, sans dégât sur vos murs",
       "Conseils pour réduire votre consommation",
     ],
+    heroImg: {
+      src: "/assets/realisations/tableau-electrique.jpg",
+      alt: "Tableau électrique et installation refaits aux normes par Artisans de France (disjoncteurs, onduleur, compteurs)",
+    },
   },
   climatisation: {
     h1Trade: "Climatisation",
@@ -153,6 +157,10 @@ export const SERVICE_META: Record<string, ServiceMeta> = {
       "Un traitement préventif contre les mousses",
       "Une intervention soignée, sans dégât",
     ],
+    heroImg: {
+      src: "/assets/realisations/demoussage-toiture.jpg",
+      alt: "Toiture en tuiles démoussée et nettoyée par Artisans de France",
+    },
   },
 };
 

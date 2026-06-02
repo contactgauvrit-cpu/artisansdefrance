@@ -75,6 +75,9 @@ export const REALISATIONS: { id: string; src: string; alt: string; title: string
   { id: "sol-2", src: "/assets/realisations/sol-stratifie-2.jpg", title: "Sol stratifié & finitions", tag: "Rénovation", alt: "Finitions et pose de sol stratifié par Artisans de France" },
   { id: "cloison-1", src: "/assets/realisations/cloison-1.jpg", title: "Création de cloison", tag: "Aménagement", alt: "Création de cloison par Artisans de France" },
   { id: "terrassement", src: "/assets/realisations/exterieur-piscine.jpg", title: "Terrassement & extérieur", tag: "Aménagement extérieur", alt: "Terrassement et préparation d'un aménagement extérieur par Artisans de France" },
+  { id: "demoussage", src: "/assets/realisations/toiture-c.jpg", title: "Démoussage de toiture", tag: "Nettoyage", alt: "Démoussage de toiture : tuiles couvertes de mousse avant, propres après, par Artisans de France" },
+  { id: "peinture-toiture", src: "/assets/realisations/toiture-b.jpg", title: "Mise en peinture de toiture", tag: "Nettoyage", alt: "Toiture en tuiles remise en peinture (rouge) par Artisans de France" },
+  { id: "tableau-elec", src: "/assets/realisations/tableau-electrique.jpg", title: "Tableau électrique aux normes", tag: "Électricité", alt: "Tableau électrique et installation refaits aux normes par Artisans de France" },
 ];
 
 export const STEPS: { title: string; desc: string }[] = [
