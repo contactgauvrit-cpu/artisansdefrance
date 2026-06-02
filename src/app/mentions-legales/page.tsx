@@ -39,7 +39,7 @@ export default function MentionsLegales() {
               <br />
               SIREN : {SITE.siren}
               <br />
-              Siège social : {SITE.address}, {SITE.baseCity} ({SITE.baseDeptCode}), {SITE.region},
+              Siège social : {SITE.address}, {SITE.postalCode} {SITE.legalCity}, {SITE.region},
               France
               <br />
               Téléphone : <a href={`tel:${SITE.phoneHref}`}>{SITE.phoneDisplay}</a> · E-mail :{" "}
@@ -63,8 +63,8 @@ export default function MentionsLegales() {
 
             <h2 className="block-title">Responsabilité</h2>
             <p>
-              Les informations publiées sont fournies à titre indicatif. {SITE.name} s'efforce d'en
-              assurer l'exactitude et la mise à jour, sans pouvoir en garantir l'exhaustivité.
+              Les informations publiées sont fournies à titre indicatif. {SITE.name} s'efforce de
+              les tenir exactes et à jour, sans toutefois pouvoir en certifier l'exhaustivité.
             </p>
 
             <h2 className="block-title">Données personnelles</h2>

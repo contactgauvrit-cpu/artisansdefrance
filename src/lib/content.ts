@@ -12,10 +12,11 @@ export const SITE = {
   phoneDisplay: "07 49 98 86 95",
   phoneHref: "+33749988695",
   email: "contact@artisansdefrancetravaux.fr",
-  siren: "000 000 000",
-  // ⚠️ Mentions légales — à compléter avec les vraies infos d'immatriculation
-  legalForm: "Entreprise individuelle (à préciser)",
-  address: "Adresse du siège — à préciser",
+  siren: "985 169 473",
+  legalForm: "Entrepreneur individuel",
+  address: "3 rue des Rosiers",
+  legalCity: "Craon",
+  postalCode: "86110",
   director: "Willy Gauvrit",
   url: "https://www.artisansdefrancetravaux.fr",
   // Localisation
@@ -49,7 +50,7 @@ export const WHY: { n: string; title: string; desc: string }[] = [
   { n: "02", title: "Devis gratuit, sans engagement", desc: "Une visite, une estimation claire et détaillée, sans frais ni obligation. Vous décidez en toute sérénité." },
   { n: "03", title: "Un seul interlocuteur", desc: "Tous vos corps de métier coordonnés par une seule personne, du premier contact à la livraison du chantier." },
   { n: "04", title: "Chantier propre, délais tenus", desc: "Nous respectons votre logement et les délais annoncés. Un chantier rangé chaque soir, livré comme convenu." },
-  { n: "05", title: "Garantie décennale", desc: "Une entreprise assurée et couverte par la garantie décennale. Vos travaux sont protégés dans la durée." },
+  { n: "05", title: "Conseils honnêtes, devis clair", desc: "Un diagnostic transparent et un devis détaillé sans surprise. On vous conseille selon votre budget, et vous décidez en toute sérénité." },
 ];
 
 export const DEPARTEMENTS: { num: string; nom: string; villes: string[] }[] = [
@@ -103,8 +104,8 @@ export const HOME_FAQ: { q: string; a: string }[] = [
     a: "Basés en Vienne (86), nous intervenons aussi en Deux-Sèvres (79), Maine-et-Loire (49) et Vendée (85) — de Poitiers à Niort, Angers et La Roche-sur-Yon, ainsi que dans les communes alentour.",
   },
   {
-    q: "Êtes-vous assurés ? Proposez-vous la garantie décennale ?",
-    a: "Oui. Artisans de France est une entreprise assurée et couverte par la garantie décennale : vos travaux sont protégés dans la durée.",
+    q: "Le devis et le déplacement sont-ils payants ?",
+    a: "Non. La visite et le devis sont gratuits et sans engagement. Vous ne réglez que les travaux que vous décidez de nous confier, au tarif convenu à l'avance.",
   },
   {
     q: "Peut-on confier plusieurs corps de métier au même artisan ?",

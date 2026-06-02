@@ -108,8 +108,8 @@ const FAQ_POOL: ((c: Ctx) => FAQ)[] = [
     a: `Oui. Artisans de France est une entreprise multiservice du bâtiment : plomberie, électricité, climatisation, peinture, aménagement extérieur (terrasse, piscine, terrassement) et nettoyage de toiture, terrasse et façade. Un seul interlocuteur pour l'ensemble de vos travaux à ${c.nom}.`,
   }),
   (c) => ({
-    q: `Vos travaux sont-ils garantis ?`,
-    a: `Oui. Nous sommes une entreprise assurée et couverte par la garantie décennale. Vos travaux de ${c.serviceLower} à ${c.nom} sont protégés dans la durée.`,
+    q: `Combien coûte une intervention de ${c.serviceLower} à ${c.nom} ?`,
+    a: `Le prix dépend de votre projet. C'est pourquoi nous nous déplaçons à ${c.nom} pour établir un devis gratuit et détaillé : vous connaissez le tarif à l'avance, sans surprise, et vous décidez librement.`,
   }),
   (c) => ({
     q: `Comment obtenir un rendez-vous à ${c.nom} ?`,
@@ -155,7 +155,7 @@ export function buildServiceCommune(service: Service, commune: Commune): Service
   const descPool = [
     `Besoin d'un ${meta.metier} qualifié à ${commune.nom} (${commune.cp}) ? Intervention rapide et travail soigné par nos artisans locaux ${dform.en}. Devis gratuit.`,
     `${meta.h1Trade} à ${commune.nom} : ${meta.keywords.slice(0, 3).join(", ")}. Artisans français, devis gratuit, délais tenus. ☎ ${SITE.phoneDisplay}.`,
-    `Travaux de ${ctx.serviceLower} à ${commune.nom} (${commune.cp}) par des artisans locaux. Devis gratuit, un seul interlocuteur, garantie décennale.`,
+    `Travaux de ${ctx.serviceLower} à ${commune.nom} (${commune.cp}) par des artisans locaux. Devis gratuit, un seul interlocuteur, travail soigné.`,
   ];
 
   return {

@@ -28,16 +28,17 @@ export function localBusinessJsonLd() {
     slogan: SITE.baseline,
     address: {
       "@type": "PostalAddress",
-      addressLocality: SITE.baseCity,
+      streetAddress: SITE.address,
+      addressLocality: SITE.legalCity,
       addressRegion: SITE.region,
-      postalCode: "86000",
+      postalCode: SITE.postalCode,
       addressCountry: "FR",
     },
     areaServed: SITE.areaServed.map((code) => ({
       "@type": "AdministrativeArea",
       name: DEPT_LABELS[code] ?? code,
     })),
-    geo: { "@type": "GeoCoordinates", latitude: 46.5802, longitude: 0.3404 },
+    geo: { "@type": "GeoCoordinates", latitude: 46.77, longitude: 0.0248 },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -52,8 +53,7 @@ export function localBusinessJsonLd() {
     })),
     knowsAbout: SERVICES.map((s) => s.title),
     sameAs: [] as string[],
-    // À activer quand le SIREN réel est connu :
-    // identifier: { "@type": "PropertyValue", propertyID: "SIREN", value: SITE.siren },
+    identifier: { "@type": "PropertyValue", propertyID: "SIREN", value: SITE.siren.replace(/\s/g, "") },
   };
 }
 
