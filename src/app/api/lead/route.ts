@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getSupabase } from "@/lib/supabase";
 
 type Lead = {
   nom?: string;
@@ -10,8 +11,8 @@ type Lead = {
 
 /**
  * Réception des demandes de devis du formulaire.
- * Aujourd'hui : validation serveur + log (visible dans les logs Vercel).
- * TODO(Supabase) : persister dans la table `leads` (voir bloc commenté).
+ * Si Supabase est configuré (env) → insertion dans la table `leads`.
+ * Sinon → log serveur (le formulaire reste fonctionnel).
  */
 export async function POST(req: Request) {
   let body: Lead;
@@ -34,25 +35,24 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 422 });
   }
 
-  // TODO(Supabase) — décommenter une fois le projet Supabase configuré :
-  //
-  //   import { createClient } from "@supabase/supabase-js";
-  //   const supabase = createClient(
-  //     process.env.SUPABASE_URL!,
-  //     process.env.SUPABASE_SERVICE_ROLE_KEY!
-  //   );
-  //   const { error } = await supabase.from("leads").insert({
-  //     nom, tel, email, type, message, source: "home",
-  //   });
-  //   if (error) return NextResponse.json({ ok: false, error: "db" }, { status: 500 });
-
-  console.log("[lead]", {
-    nom,
-    tel,
-    email,
-    type,
-    message: message.slice(0, 200),
-  });
+  const supabase = getSupabase();
+  if (supabase) {
+    const { error } = await supabase
+      .from("leads")
+      .insert({ nom, tel, email: email || null, type, message, source: "site" });
+    if (error) {
+      console.error("[lead] erreur Supabase:", error.message);
+      return NextResponse.json({ ok: false, error: "db" }, { status: 500 });
+    }
+  } else {
+    console.log("[lead] (Supabase non configuré)", {
+      nom,
+      tel,
+      email,
+      type,
+      message: message.slice(0, 200),
+    });
+  }
 
   return NextResponse.json({ ok: true });
 }
