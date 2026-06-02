@@ -42,3 +42,6 @@ next-env.d.ts
 
 # ADF design source (reference only)
 /design-reference/
+
+# Photos sources lourdes (originaux gardés en local, versions optimisées dans public/assets/realisations)
+Photos chantier/

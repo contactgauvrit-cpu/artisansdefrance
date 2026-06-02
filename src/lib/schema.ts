@@ -22,7 +22,11 @@ export function localBusinessJsonLd() {
     url: SITE.url,
     telephone: SITE.phoneHref,
     email: SITE.email,
-    image: `${SITE.url}/assets/coq-metal.png`,
+    image: [
+      `${SITE.url}/assets/realisations/salle-de-bain.jpg`,
+      `${SITE.url}/assets/realisations/terrasse-bois.jpg`,
+      `${SITE.url}/assets/realisations/peinture-decoration.jpg`,
+    ],
     logo: `${SITE.url}/assets/coq-metal.png`,
     priceRange: "€€",
     slogan: SITE.baseline,

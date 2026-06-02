@@ -42,7 +42,13 @@ export function Hero() {
         </div>
 
         <div className="hero-media">
-          <ImageSlot label="Photo de chantier — lumière naturelle" priority />
+          <ImageSlot
+            src="/assets/realisations/salle-de-bain.jpg"
+            alt="Salle de bain rénovée par Artisans de France : douche, vasque sur plan en bois et carrelage"
+            label="Salle de bain rénovée"
+            priority
+            sizes="(max-width:980px) 100vw, 42vw"
+          />
           <div className="hero-badge">
             <Image
               src="/assets/coq-metal.png"

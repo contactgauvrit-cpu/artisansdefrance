@@ -60,13 +60,21 @@ export const DEPARTEMENTS: { num: string; nom: string; villes: string[] }[] = [
   { num: "85", nom: "Vendée", villes: ["La Roche-sur-Yon", "Les Sables-d'Olonne", "Challans", "Fontenay-le-Comte"] },
 ];
 
-export const GALLERY: { id: string; title: string; before: string; after: string }[] = [
-  { id: "r1", title: "Rénovation de salle de bain", before: "Salle de bain — avant", after: "Salle de bain — après" },
-  { id: "r2", title: "Ravalement de façade", before: "Façade — avant", after: "Façade — après" },
-  { id: "r3", title: "Création de piscine", before: "Terrain — avant", after: "Piscine — après" },
-  { id: "r4", title: "Aménagement extérieur", before: "Jardin — avant", after: "Terrasse — après" },
-  { id: "r5", title: "Rénovation de cuisine", before: "Cuisine — avant", after: "Cuisine — après" },
-  { id: "r6", title: "Peinture & finitions", before: "Pièce — avant", after: "Pièce — après" },
+/** Réalisations réelles (photos de chantiers Artisans de France). */
+export const REALISATIONS: { id: string; src: string; alt: string; title: string; tag: string }[] = [
+  { id: "peinture-deco", src: "/assets/realisations/peinture-decoration.jpg", title: "Peinture & décoration", tag: "Peinture", alt: "Chambre repeinte en vert sauge avec décoration, réalisée par Artisans de France" },
+  { id: "terrasse-bois", src: "/assets/realisations/terrasse-bois.jpg", title: "Terrasse en bois", tag: "Aménagement extérieur", alt: "Terrasse en bois créée par Artisans de France dans un jardin" },
+  { id: "sol-stratifie", src: "/assets/realisations/sol-stratifie-1.jpg", title: "Pose de sol stratifié", tag: "Rénovation", alt: "Pièce rénovée avec sol stratifié posé par Artisans de France" },
+  { id: "cloture", src: "/assets/realisations/cloture.jpg", title: "Création de clôture", tag: "Aménagement extérieur", alt: "Clôture créée par Artisans de France" },
+  { id: "peinture-int", src: "/assets/realisations/peinture-interieur.jpg", title: "Peinture intérieure", tag: "Peinture", alt: "Peinture intérieure réalisée par Artisans de France" },
+  { id: "beton-paves", src: "/assets/realisations/beton-desactive-paves.jpg", title: "Béton désactivé & pavés", tag: "Aménagement extérieur", alt: "Allée en béton désactivé et pavés réalisée par Artisans de France" },
+  { id: "reno-appart", src: "/assets/realisations/renovation-appartement.jpg", title: "Rénovation d'appartement", tag: "Rénovation", alt: "Rénovation d'appartement (sol et peinture) par Artisans de France" },
+  { id: "cloison-2", src: "/assets/realisations/cloison-2.jpg", title: "Aménagement de local", tag: "Aménagement", alt: "Aménagement et création de cloison dans un local par Artisans de France" },
+  { id: "piscine", src: "/assets/realisations/piscine-semi-enterree.jpg", title: "Création de piscine", tag: "Aménagement extérieur", alt: "Création de piscine semi-enterrée par Artisans de France" },
+  { id: "ext", src: "/assets/realisations/amenagement-exterieur.jpg", title: "Aménagement extérieur", tag: "Aménagement extérieur", alt: "Aménagement extérieur réalisé par Artisans de France" },
+  { id: "sol-2", src: "/assets/realisations/sol-stratifie-2.jpg", title: "Sol stratifié & finitions", tag: "Rénovation", alt: "Finitions et pose de sol stratifié par Artisans de France" },
+  { id: "cloison-1", src: "/assets/realisations/cloison-1.jpg", title: "Création de cloison", tag: "Aménagement", alt: "Création de cloison par Artisans de France" },
+  { id: "terrassement", src: "/assets/realisations/exterieur-piscine.jpg", title: "Terrassement & extérieur", tag: "Aménagement extérieur", alt: "Terrassement et préparation d'un aménagement extérieur par Artisans de France" },
 ];
 
 export const STEPS: { title: string; desc: string }[] = [
