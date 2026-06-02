@@ -38,7 +38,6 @@ export const metadata: Metadata = {
   authors: [{ name: SITE.name }],
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
-  icons: { icon: "/assets/favicon.png", apple: "/assets/favicon.png" },
   openGraph: {
     type: "website",
     locale: "fr_FR",

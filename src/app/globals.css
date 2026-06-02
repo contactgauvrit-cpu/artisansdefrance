@@ -486,3 +486,19 @@ html.anim .reveal-mask.in{clip-path:inset(0 0 0 0)}
 
 .section-tight{padding:clamp(36px,6vw,64px) 0;border-bottom:1px solid var(--rule-soft)}
 .section-tight:last-of-type{border-bottom:none}
+
+/* =========================================================
+   CURSEUR FLEUR DE LIS (cuivre + liseré blanc -> visible sur clair & foncé)
+   ========================================================= */
+html, body,
+a, button, .btn, .chip, .scard, .dept, .svc-tile, .burger,
+summary, select, label, [role="button"] {
+  cursor: url("/assets/cursor-fleur.png") 16 2, auto;
+}
+input[type="text"], input[type="tel"], input[type="email"], textarea {
+  cursor: text;
+}
+/* Appareils tactiles : pas de curseur personnalisé */
+@media (hover: none) {
+  html, body, a, button, .btn { cursor: auto; }
+}
