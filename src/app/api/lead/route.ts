@@ -65,11 +65,5 @@ export async function POST(req: Request) {
     console.error("[lead] erreur e-mail:", (e as Error).message);
   }
 
-  // emailStatus/emailDetail = debug temporaire pour diagnostiquer Brevo
-  return NextResponse.json({
-    ok: true,
-    emailed: emailRes.sent,
-    emailStatus: emailRes.status,
-    emailDetail: emailRes.detail,
-  });
+  return NextResponse.json({ ok: true, emailed: emailRes.sent });
 }
