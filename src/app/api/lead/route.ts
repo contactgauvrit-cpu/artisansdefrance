@@ -57,11 +57,12 @@ export async function POST(req: Request) {
   }
 
   // 3) Notification e-mail (Brevo) — ne bloque pas le succès si échec
+  let emailed = false;
   try {
-    await sendLeadEmail({ nom, tel, email, type, message });
+    emailed = await sendLeadEmail({ nom, tel, email, type, message });
   } catch (e) {
     console.error("[lead] erreur e-mail:", (e as Error).message);
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, emailed });
 }
