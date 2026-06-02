@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
-import { sendLeadEmail } from "@/lib/email";
+import { sendLeadEmail, sendClientAck } from "@/lib/email";
 
 type Lead = {
   nom?: string;
@@ -56,14 +56,20 @@ export async function POST(req: Request) {
     });
   }
 
-  // 3) Notification e-mail (Brevo) — ne bloque pas le succès si échec
+  // 3) Notifications e-mail (Brevo) — n'échouent jamais le formulaire (devis déjà en base)
+  const lead = { nom, tel, email, type, message };
   let emailRes = { sent: false, status: 0, detail: "" };
+  let ackRes = { sent: false, status: 0, detail: "" };
   try {
-    emailRes = await sendLeadEmail({ nom, tel, email, type, message });
+    emailRes = await sendLeadEmail(lead); // notification artisan
   } catch (e) {
-    emailRes = { sent: false, status: 0, detail: (e as Error).message.slice(0, 200) };
-    console.error("[lead] erreur e-mail:", (e as Error).message);
+    console.error("[lead] erreur e-mail artisan:", (e as Error).message);
+  }
+  try {
+    ackRes = await sendClientAck(lead); // accusé de réception client (si e-mail fourni)
+  } catch (e) {
+    console.error("[lead] erreur e-mail client:", (e as Error).message);
   }
 
-  return NextResponse.json({ ok: true, emailed: emailRes.sent });
+  return NextResponse.json({ ok: true, emailed: emailRes.sent, ack: ackRes.sent });
 }
