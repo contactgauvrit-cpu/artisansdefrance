@@ -256,15 +256,15 @@ const nettoyage: Playbook = {
       techno ReadyClim brevetée, fluide R32, mono/multisplit, WiFi, jusqu'à A+++.
    ⛔ NE PAS écrire « fabriqué en France » (fabrication historiquement chinoise ;
       usine de Roanne = projet 2023 non confirmé ; aucun label officiel).
-   ⚠️ La mise en service d'un fluide R32 relève d'un professionnel attesté
-      (attestation de capacité, Cat. I) — fait réglementaire, présenté sobrement.
+   ⚠️ Choix client : NE PAS évoquer l'attestation de capacité ni l'obligation
+      réglementaire R32 dans le contenu public.
    Air/air UNIQUEMENT. Pas de chiffres SEER/SCOP/dB inventés.
    ============================================================ */
 const climatisation: Playbook = {
   expertiseTitle: (c) => `Climatisation réversible Airton à ${c.nom} : confort été comme hiver`,
   expertise: [
     (c) =>
-      `À ${c.nom}, nous installons la climatisation réversible Airton, marque française spécialiste de la pompe à chaleur air-air. Une clim réversible rafraîchit l'été et chauffe en demi-saison comme en hiver : un seul équipement pour un confort maîtrisé toute l'année, avec une consommation bien inférieure à celle d'un convecteur électrique.`,
+      `À ${c.nom}, nous installons la climatisation réversible Airton, marque française spécialiste de la pompe à chaleur air-air. Elle rafraîchit l'été et chauffe en demi-saison comme en hiver : un seul équipement pour un confort maîtrisé toute l'année, avec une consommation bien inférieure à celle d'un convecteur électrique. À l'approche des fortes chaleurs, c'est l'installation qui change tout — et anticiper la pose évite l'attente de pleine saison.`,
     (c) =>
       `Les climatiseurs Airton utilisent le fluide R32 et la technologie ReadyClim : une liaison frigorifique pré-chargée et hermétiquement scellée, qui fiabilise l'installation. Selon votre logement à ${c.nom}, nous posons un modèle monosplit (une pièce) ou multisplit — jusqu'à quatre unités intérieures reliées à un seul groupe extérieur.`,
     (c) =>
@@ -277,6 +277,7 @@ const climatisation: Playbook = {
   highlights: [
     () => `Climatisation réversible Airton, marque française`,
     () => `Pompe à chaleur air-air : rafraîchit et chauffe`,
+    () => `Pose anticipée avant l'été, prêt pour les fortes chaleurs`,
     () => `Fluide R32 + technologie ReadyClim (liaison pré-chargée)`,
     () => `Monosplit ou multisplit (jusqu'à 4 pièces)`,
     () => `Modèles connectés WiFi, jusqu'à A+++ selon le modèle`,
@@ -296,8 +297,8 @@ const climatisation: Playbook = {
       a: `Cela dépend de la surface, de l'exposition et de l'isolation. C'est pourquoi nous nous déplaçons à ${c.nom} pour dimensionner précisément votre installation : une clim sous-dimensionnée peine, une clim surdimensionnée consomme inutilement.`,
     }),
     (c) => ({
-      q: `Faut-il un professionnel pour installer une clim au fluide R32 à ${c.nom} ?`,
-      a: `Oui. La mise en service d'un climatiseur contenant un fluide frigorigène comme le R32 doit être confiée à un professionnel : c'est une obligation réglementaire. Nous prenons en charge la pose et la mise en service de votre climatiseur Airton à ${c.nom}.`,
+      q: `Quand faire installer sa climatisation à ${c.nom} ?`,
+      a: `L'idéal est d'anticiper : une pose au printemps ou en début d'été vous rend prêt avant les premières fortes chaleurs, au moment où les demandes affluent et où les délais s'allongent. À ${c.nom}, contactez-nous tôt pour planifier sereinement votre installation et profiter du confort dès les beaux jours.`,
     }),
     (c) => ({
       q: `Peut-on climatiser plusieurs pièces à ${c.nom} avec un seul appareil ?`,
@@ -309,9 +310,9 @@ const climatisation: Playbook = {
     }),
   ],
   hubExpertise: [
-    `Artisans de France installe la climatisation réversible Airton, marque française spécialiste de la pompe à chaleur air-air, sur la Vienne (86), les Deux-Sèvres (79), le Maine-et-Loire (49) et la Vendée (85). Une clim réversible rafraîchit l'été et chauffe en demi-saison comme en hiver : un seul équipement, un confort toute l'année et des consommations maîtrisées.`,
+    `Artisans de France installe la climatisation réversible Airton, marque française spécialiste de la pompe à chaleur air-air, sur la Vienne (86), les Deux-Sèvres (79), le Maine-et-Loire (49) et la Vendée (85). Une clim réversible rafraîchit l'été et chauffe en demi-saison comme en hiver : un seul équipement, un confort toute l'année et des consommations maîtrisées. À l'approche de l'été, anticipez votre installation pour être prêt avant les premières fortes chaleurs.`,
     `Conçus en France, les climatiseurs Airton reposent sur le fluide R32 et la technologie ReadyClim — une liaison pré-chargée et hermétiquement scellée. Monosplit pour une pièce, multisplit jusqu'à quatre unités, modèles connectés WiFi atteignant jusqu'à la classe A+++ selon la référence : nous dimensionnons puis posons la solution adaptée à votre logement.`,
-    `La mise en service d'un climatiseur au fluide R32 doit être confiée à un professionnel. Nous prenons en charge l'installation comme la mise en service de votre climatisation Airton — du conseil sur le bon modèle au réglage final, avec un seul interlocuteur.`,
+    `De l'étude de vos pièces au réglage final, nous prenons en charge l'installation et la mise en service de votre climatisation Airton : un seul interlocuteur, du conseil sur le bon modèle jusqu'au confort au quotidien. Anticipez la pose avant l'été pour être au frais dès les premières chaleurs.`,
   ],
 };
 
