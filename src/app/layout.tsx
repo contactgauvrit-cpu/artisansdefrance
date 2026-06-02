@@ -28,12 +28,11 @@ const script = Great_Vibes({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default:
-      "Artisans de France — Travaux, rénovation & création en Vienne (86) | Devis gratuit",
+    default: "Artisan tous travaux en Vendée & Vienne | Artisans de France",
     template: "%s | Artisans de France",
   },
   description:
-    "Artisans français basés en Vienne (86) : plomberie, électricité, climatisation, peinture, aménagement extérieur (terrasse, piscine) et nettoyage de toiture & façade. Un seul interlocuteur, devis gratuit en Vienne (86), Deux-Sèvres (79), Maine-et-Loire (49) et Vendée (85).",
+    "Plomberie, électricité, climatisation, peinture et rénovation par des artisans français en Vendée, Vienne, Deux-Sèvres & Maine-et-Loire. Devis gratuit.",
   applicationName: SITE.name,
   authors: [{ name: SITE.name }],
   alternates: { canonical: "/" },
@@ -43,15 +42,15 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: SITE.url,
     siteName: SITE.name,
-    title: "Artisans de France — Création & Rénovation en Vienne (86)",
+    title: "Artisans de France — Tous vos travaux en Vendée & Vienne",
     description:
-      "Tous vos travaux du sol au plafond par des artisans français. Devis gratuit en Vienne (86), Deux-Sèvres (79), Maine-et-Loire (49) et Vendée (85).",
+      "Tous vos travaux du sol au plafond par des artisans français. Devis gratuit en Vendée (85), Vienne (86), Deux-Sèvres (79) et Maine-et-Loire (49).",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Artisans de France — Création & Rénovation en Vienne (86)",
+    title: "Artisans de France — Tous vos travaux en Vendée & Vienne",
     description:
-      "Tous vos travaux du sol au plafond par des artisans français. Devis gratuit en Vienne (86) et alentours.",
+      "Tous vos travaux du sol au plafond par des artisans français en Vendée, Vienne et alentours. Devis gratuit.",
   },
 };
 
