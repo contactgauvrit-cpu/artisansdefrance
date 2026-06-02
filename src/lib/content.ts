@@ -13,6 +13,10 @@ export const SITE = {
   phoneHref: "+33749988695",
   email: "contact@artisansdefrancetravaux.fr",
   siren: "000 000 000",
+  // ⚠️ Mentions légales — à compléter avec les vraies infos d'immatriculation
+  legalForm: "Entreprise individuelle (à préciser)",
+  address: "Adresse du siège — à préciser",
+  director: "Willy Gauvrit",
   url: "https://www.artisansdefrancetravaux.fr",
   // Localisation
   region: "Nouvelle-Aquitaine",

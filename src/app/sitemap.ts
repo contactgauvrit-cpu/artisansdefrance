@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const urls: MetadataRoute.Sitemap = [
     { url: `${SITE.url}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE.url}/zone`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE.url}/mentions-legales`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${SITE.url}/politique-de-confidentialite`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
   ];
 
   for (const d of DEPTS) {

@@ -69,8 +69,9 @@ export function Footer() {
         <div className="footer-bottom">
           <span>{`© ${year} Artisans de France — Création & Rénovation. Tous droits réservés.`}</span>
           <span>
-            SIREN {SITE.siren} · <a href="#">Mentions légales</a> ·{" "}
-            <a href="#">Politique de confidentialité</a>
+            {SITE.siren !== "000 000 000" && <>SIREN {SITE.siren} · </>}
+            <Link href="/mentions-legales">Mentions légales</Link> ·{" "}
+            <Link href="/politique-de-confidentialite">Politique de confidentialité</Link>
           </span>
         </div>
       </div>
