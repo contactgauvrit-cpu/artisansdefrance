@@ -13,7 +13,7 @@ export const SITE = {
   phoneHref: "+33549000000",
   email: "contact@artisansdefrancetravaux.fr",
   siren: "000 000 000",
-  url: "https://artisansdefrancetravaux.fr",
+  url: "https://www.artisansdefrancetravaux.fr",
   // Localisation
   region: "Nouvelle-Aquitaine",
   baseCity: "Poitiers",

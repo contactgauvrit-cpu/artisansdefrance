@@ -3,20 +3,20 @@
 > Entreprise multiservice du bâtiment basée en Vienne (86), Nouvelle-Aquitaine. Création et rénovation par des artisans français : plomberie, électricité, climatisation, rénovation générale, aménagement intérieur, peinture, aménagement extérieur et piscine. Devis gratuit, un seul interlocuteur. Zone d'intervention : Vienne (86), Deux-Sèvres (79), Maine-et-Loire (49) et Vendée (85). Téléphone : 05 49 00 00 00.
 
 ## Services
-- [Plombier — plomberie](https://artisansdefrancetravaux.fr/plomberie): dépannage, recherche de fuite, chauffe-eau, sanitaires, mise aux normes.
-- [Électricien — électricité](https://artisansdefrancetravaux.fr/electricite): mise aux normes du tableau, rénovation électrique, éclairage, borne de recharge.
-- [Climatisation](https://artisansdefrancetravaux.fr/climatisation): climatisation réversible, pompe à chaleur (PAC) air/air et air/eau.
-- [Rénovation générale](https://artisansdefrancetravaux.fr/renovation-generale): rénovation de maison et d'appartement, tous corps d'état.
-- [Aménagement intérieur](https://artisansdefrancetravaux.fr/amenagement-interieur): cuisine, salle de bain, cloisons, rangements sur mesure.
-- [Peinture intérieure & extérieure](https://artisansdefrancetravaux.fr/peinture): peinture, enduits, ravalement de façade.
-- [Création & aménagement extérieur](https://artisansdefrancetravaux.fr/amenagement-exterieur): terrasse, jardin, allées, clôtures.
-- [Piscine](https://artisansdefrancetravaux.fr/piscine): construction et rénovation de piscine, plage et abords.
+- [Plombier — plomberie](https://www.artisansdefrancetravaux.fr/plomberie): dépannage, recherche de fuite, chauffe-eau, sanitaires, mise aux normes.
+- [Électricien — électricité](https://www.artisansdefrancetravaux.fr/electricite): mise aux normes du tableau, rénovation électrique, éclairage, borne de recharge.
+- [Climatisation](https://www.artisansdefrancetravaux.fr/climatisation): climatisation réversible, pompe à chaleur (PAC) air/air et air/eau.
+- [Rénovation générale](https://www.artisansdefrancetravaux.fr/renovation-generale): rénovation de maison et d'appartement, tous corps d'état.
+- [Aménagement intérieur](https://www.artisansdefrancetravaux.fr/amenagement-interieur): cuisine, salle de bain, cloisons, rangements sur mesure.
+- [Peinture intérieure & extérieure](https://www.artisansdefrancetravaux.fr/peinture): peinture, enduits, ravalement de façade.
+- [Création & aménagement extérieur](https://www.artisansdefrancetravaux.fr/amenagement-exterieur): terrasse, jardin, allées, clôtures.
+- [Piscine](https://www.artisansdefrancetravaux.fr/piscine): construction et rénovation de piscine, plage et abords.
 
 ## Zone d'intervention
-- [Vienne (86)](https://artisansdefrancetravaux.fr/zone/vienne-86): Poitiers, Châtellerault, Buxerolles, Chauvigny, Loudun, Montmorillon…
-- [Deux-Sèvres (79)](https://artisansdefrancetravaux.fr/zone/deux-sevres-79): Niort, Bressuire, Thouars, Parthenay, Melle…
-- [Maine-et-Loire (49)](https://artisansdefrancetravaux.fr/zone/maine-et-loire-49): Angers, Cholet, Saumur, Trélazé…
-- [Vendée (85)](https://artisansdefrancetravaux.fr/zone/vendee-85): La Roche-sur-Yon, Les Sables-d'Olonne, Challans, Fontenay-le-Comte…
+- [Vienne (86)](https://www.artisansdefrancetravaux.fr/zone/vienne-86): Poitiers, Châtellerault, Buxerolles, Chauvigny, Loudun, Montmorillon…
+- [Deux-Sèvres (79)](https://www.artisansdefrancetravaux.fr/zone/deux-sevres-79): Niort, Bressuire, Thouars, Parthenay, Melle…
+- [Maine-et-Loire (49)](https://www.artisansdefrancetravaux.fr/zone/maine-et-loire-49): Angers, Cholet, Saumur, Trélazé…
+- [Vendée (85)](https://www.artisansdefrancetravaux.fr/zone/vendee-85): La Roche-sur-Yon, Les Sables-d'Olonne, Challans, Fontenay-le-Comte…
 
 ## Points clés
 - Devis gratuit et sans engagement, réponse sous 24 h.
@@ -24,5 +24,5 @@
 - Chantier propre, délais tenus, intervention rapide (urgence plomberie et électricité).
 
 ## Contact
-- Devis gratuit : https://artisansdefrancetravaux.fr/#contact
+- Devis gratuit : https://www.artisansdefrancetravaux.fr/#contact
 - Téléphone : 05 49 00 00 00
