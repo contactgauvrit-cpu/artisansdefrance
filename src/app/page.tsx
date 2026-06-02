@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
+import { ClimaHome } from "@/components/ClimaHome";
 import { Why } from "@/components/Why";
 import { Zone } from "@/components/Zone";
 import { Realisations } from "@/components/Realisations";
@@ -21,6 +22,7 @@ export default function Home() {
       <main id="top">
         <Hero />
         <Services />
+        <ClimaHome />
         <Why />
         <Zone />
         <Realisations />

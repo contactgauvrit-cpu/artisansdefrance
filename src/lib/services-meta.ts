@@ -11,6 +11,8 @@ export type ServiceMeta = {
   keywords: string[];
   /** Raisons de choisir (bénéfices). */
   benefices: string[];
+  /** Photo d'en-tête du hub (réalisation réelle), optionnelle. */
+  heroImg?: { src: string; alt: string };
 };
 
 export const SERVICE_META: Record<string, ServiceMeta> = {
@@ -34,6 +36,10 @@ export const SERVICE_META: Record<string, ServiceMeta> = {
       "Travail conforme aux normes en vigueur",
       "Un seul interlocuteur pour toute votre plomberie",
     ],
+    heroImg: {
+      src: "/assets/realisations/salle-de-bain.jpg",
+      alt: "Salle de bain rénovée par Artisans de France : douche, vasque sur plan en bois et carrelage",
+    },
   },
   electricite: {
     h1Trade: "Électricien",
@@ -97,6 +103,10 @@ export const SERVICE_META: Record<string, ServiceMeta> = {
       "Le respect de votre intérieur et de vos meubles",
       "Des conseils couleurs et matières",
     ],
+    heroImg: {
+      src: "/assets/realisations/peinture-decoration.jpg",
+      alt: "Peinture et décoration d'une chambre (mur vert sauge) par Artisans de France",
+    },
   },
   "amenagement-exterieur": {
     h1Trade: "Aménagement extérieur",
@@ -118,6 +128,10 @@ export const SERVICE_META: Record<string, ServiceMeta> = {
       "Des matériaux résistants aux intempéries",
       "Un projet adapté à votre terrain",
     ],
+    heroImg: {
+      src: "/assets/realisations/terrasse-bois.jpg",
+      alt: "Terrasse en bois créée par Artisans de France dans un jardin",
+    },
   },
   nettoyage: {
     h1Trade: "Nettoyage toiture & façade",

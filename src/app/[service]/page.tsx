@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
@@ -59,6 +60,21 @@ export default async function ServiceHubPage({ params }: Props) {
             {meta.h1Trade} <em>en Vienne et alentours</em>
           </h1>
         </section>
+
+        {meta.heroImg && (
+          <section className="wrap" style={{ paddingTop: 0 }}>
+            <figure className="hub-hero">
+              <Image
+                src={meta.heroImg.src}
+                alt={meta.heroImg.alt}
+                fill
+                sizes="(max-width:1100px) 100vw, 1040px"
+                priority
+                style={{ objectFit: "cover" }}
+              />
+            </figure>
+          </section>
+        )}
 
         <section className="wrap section-tight">
           <div className="split">

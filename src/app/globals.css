@@ -282,6 +282,22 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
 .airton-strip-img{position:relative;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;border:1px solid var(--rule)}
 @media(max-width:880px){.airton-lead{grid-template-columns:1fr}.airton-range{grid-template-columns:repeat(2,1fr)}.airton-strip{grid-template-columns:1fr}}
 
+/* ===== Bloc clim accueil (saisonnier) ===== */
+.clima-band{display:grid;grid-template-columns:460px 1fr;border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden;background:var(--copper-wash)}
+.clima-band-media{position:relative;min-height:330px}
+.clima-tag{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--copper);padding:6px 11px;border-radius:7px}
+.clima-band-text{padding:34px 38px}
+.clima-band-text h2{margin:8px 0 12px}
+.clima-band-text p{color:var(--gray);font-size:15.5px;line-height:1.62;margin:0 0 14px}
+.clima-points{list-style:none;padding:0;margin:0 0 22px;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+.clima-points li{position:relative;padding-left:22px;font-size:14.5px;font-weight:600}
+.clima-points li::before{content:"✓";position:absolute;left:0;top:0;color:var(--copper);font-weight:800}
+@media(max-width:880px){.clima-band{grid-template-columns:1fr}.clima-band-media{min-height:230px}.clima-band-text{padding:26px 22px}.clima-points{grid-template-columns:1fr;gap:8px}}
+
+/* ===== Photo d'en-tête de hub service ===== */
+.hub-hero{position:relative;aspect-ratio:21/8;border-radius:var(--radius);overflow:hidden;border:1px solid var(--rule);margin:0}
+@media(max-width:700px){.hub-hero{aspect-ratio:16/9}}
+
 /* ===== Placeholder image (en attente des vraies photos client) ===== */
 .img-slot{position:relative;display:flex;align-items:center;justify-content:center;background:var(--copper-wash);color:var(--copper-deep);overflow:hidden}
 .img-slot .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.8;padding:0 16px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;line-height:1.5}
