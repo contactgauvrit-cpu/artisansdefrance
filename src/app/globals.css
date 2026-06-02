@@ -190,7 +190,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
 /* =========================================================
    SERVICES
    ========================================================= */
-.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .scard{
   background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);
   padding:30px 26px 28px;transition:.22s ease;position:relative;overflow:hidden;
@@ -479,7 +479,7 @@ html.anim .reveal-mask.in{clip-path:inset(0 0 0 0)}
 .dept-hub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 @media (max-width:760px){.dept-hub-grid{grid-template-columns:1fr}}
 
-.svc-hublist{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.svc-hublist{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media (max-width:920px){.svc-hublist{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.svc-hublist{grid-template-columns:1fr}}
 .svc-tile{display:flex;align-items:center;gap:12px;border:1px solid var(--rule);border-radius:12px;padding:14px 16px;background:#fff;transition:.18s}

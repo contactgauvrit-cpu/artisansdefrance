@@ -105,7 +105,7 @@ const FAQ_POOL: ((c: Ctx) => FAQ)[] = [
   }),
   (c) => ({
     q: `Proposez-vous d'autres travaux que la ${c.serviceLower} à ${c.nom} ?`,
-    a: `Oui. Artisans de France est une entreprise multiservice du bâtiment : plomberie, électricité, climatisation, rénovation, peinture, aménagement intérieur et extérieur, piscine. Un seul interlocuteur pour l'ensemble de vos travaux à ${c.nom}.`,
+    a: `Oui. Artisans de France est une entreprise multiservice du bâtiment : plomberie, électricité, climatisation, peinture, aménagement extérieur (terrasse, piscine, terrassement) et nettoyage de toiture, terrasse et façade. Un seul interlocuteur pour l'ensemble de vos travaux à ${c.nom}.`,
   }),
   (c) => ({
     q: `Vos travaux sont-ils garantis ?`,

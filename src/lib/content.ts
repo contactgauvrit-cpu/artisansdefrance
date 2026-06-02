@@ -32,14 +32,12 @@ export type Service = {
 };
 
 export const SERVICES: Service[] = [
-  { slug: "plomberie", icon: "plomberie", title: "Plomberie", desc: "Installation, dépannage et rénovation de plomberie : sanitaires, chauffe-eau, recherche de fuite et mise aux normes en Vienne." },
-  { slug: "electricite", icon: "electricite", title: "Électricité", desc: "Rénovation électrique, mise en sécurité du tableau, éclairage et bornes : une installation conforme et fiable chez vous." },
-  { slug: "climatisation", icon: "clim", title: "Climatisation", desc: "Pose et entretien de climatisation réversible et pompe à chaleur, pour un confort toute l'année et des factures maîtrisées." },
-  { slug: "renovation-generale", icon: "renovation", title: "Rénovation générale", desc: "Rénovation de maison ou d'appartement, du gros œuvre aux finitions, coordonnée par un seul interlocuteur." },
-  { slug: "amenagement-interieur", icon: "amenagement", title: "Aménagement intérieur", desc: "Cuisine, salle de bain, cloisons, placards sur mesure : nous repensons et optimisons vos espaces de vie." },
+  { slug: "plomberie", icon: "plomberie", title: "Plomberie", desc: "Installation, dépannage et rénovation de plomberie : sanitaires, chauffe-eau, recherche de fuite et mise aux normes." },
+  { slug: "electricite", icon: "electricite", title: "Électricité", desc: "Rénovation électrique, mise en sécurité du tableau, éclairage et bornes : une installation conforme et fiable." },
+  { slug: "climatisation", icon: "clim", title: "Climatisation", desc: "Pose et entretien de climatisation réversible air/air : un confort toute l'année et des factures maîtrisées." },
   { slug: "peinture", icon: "peinture", title: "Peinture intérieure & extérieure", desc: "Peinture, enduits et ravalement de façade : des surfaces nettes et durables, en intérieur comme en extérieur." },
-  { slug: "amenagement-exterieur", icon: "exterieur", title: "Création & aménagement extérieur", desc: "Terrasses, allées, clôtures et espaces extérieurs : nous créons et aménageons vos abords avec soin." },
-  { slug: "piscine", icon: "piscine", title: "Piscine", desc: "Création, rénovation et aménagement de piscine et de plage : un espace de détente sur mesure dans votre jardin." },
+  { slug: "amenagement-exterieur", icon: "exterieur", title: "Création & aménagement extérieur", desc: "Terrasse, piscine, terrassement, allées, clôtures et jardin : nous créons et aménageons vos espaces extérieurs." },
+  { slug: "nettoyage", icon: "nettoyage", title: "Nettoyage toiture, terrasse & façade", desc: "Démoussage et nettoyage de toiture, terrasse et façade : on protège votre habitat et on lui redonne de l'éclat." },
 ];
 
 export const WHY: { n: string; title: string; desc: string }[] = [
@@ -106,7 +104,7 @@ export const HOME_FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Peut-on confier plusieurs corps de métier au même artisan ?",
-    a: "Absolument, c'est notre spécialité. Plomberie, électricité, climatisation, rénovation, peinture, aménagement intérieur et extérieur, piscine : tout est coordonné par un seul interlocuteur.",
+    a: "Absolument, c'est notre spécialité. Plomberie, électricité, climatisation, peinture, aménagement extérieur (terrasse, piscine, terrassement) et nettoyage de toiture, terrasse et façade : tout est coordonné par un seul interlocuteur.",
   },
   {
     q: "Sous combien de temps répondez-vous à une demande de devis ?",

@@ -64,6 +64,13 @@ export const serviceIcons: Record<string, React.ReactNode> = {
       <path d="M2 13c2 0 2 1.5 4 1.5S8 13 10 13M7 11V5a2 2 0 0 1 4 0M17 11V5a2 2 0 0 0-4 0" />
     </svg>
   ),
+  nettoyage: (
+    <svg viewBox="0 0 24 24" strokeWidth={1.7} {...stroke}>
+      <path d="M9 21h6a1 1 0 0 0 1-1v-7a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v7a1 1 0 0 0 1 1z" />
+      <path d="M10 10V7h3l3-3" />
+      <path d="M19 4.5h1.5M20 3.5v2M18 7h1.5" />
+    </svg>
+  ),
 };
 
 /* ---- Icônes "Pourquoi nous" (01 → 05) ---- */

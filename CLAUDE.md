@@ -53,7 +53,7 @@ Section vivante. Relire avant chaque sprint.
 Site vitrine **+ dispositif SEO local programmatique** pour **Artisans de France**, entreprise multiservice du bâtiment. Objectif : générer des **demandes de devis** et **dominer le SEO local** (« [métier] + [commune] ») sur 4 départements, avec un **contenu réel et unique par page** (zéro doorway page).
 
 - **Zone** : Vienne (86), Deux-Sèvres (79), Maine-et-Loire (49), **Vendée (85)**. Base actuelle **Poitiers**, cap à terme **Vendée** (déménagement prévu) → garder une identité **neutre** (pas de n° de département figé dans la marque/le domaine).
-- **8 services** : Plomberie, Électricité, Climatisation, Rénovation générale, Aménagement intérieur, Peinture intérieure & extérieure, Création & aménagement extérieur, Piscine.
+- **6 services** : Plomberie, Électricité, Climatisation (air/air uniquement), Peinture intérieure & extérieure, Création & aménagement extérieur (terrasse, piscine, terrassement, clôtures…), Nettoyage (toiture, terrasse, façade). *(Artisan direct — pas de marketplace. Horaires Lun-Sam 8h-19h, pas de 24h/24.)*
 
 ## 2. Stack technique
 

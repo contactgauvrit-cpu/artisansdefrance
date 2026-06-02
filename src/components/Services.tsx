@@ -13,8 +13,8 @@ export function Services() {
             Un seul artisan pour <em>tous vos travaux</em>
           </h2>
           <p className="lede" style={{ marginInline: "auto" }}>
-            Plomberie, électricité, rénovation ou aménagement extérieur : nos équipes
-            interviennent sur l&apos;ensemble de vos projets, en intérieur comme en extérieur.
+            Plomberie, électricité, climatisation, peinture, aménagement extérieur ou nettoyage :
+            nous intervenons sur l&apos;ensemble de vos projets, en direct et près de chez vous.
           </p>
         </div>
 

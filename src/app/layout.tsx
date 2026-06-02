@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Artisans de France",
   },
   description:
-    "Artisans français basés en Vienne (86) : plomberie, électricité, climatisation, rénovation, peinture, aménagement extérieur et piscine. Un seul interlocuteur, devis gratuit en Vienne (86), Deux-Sèvres (79), Maine-et-Loire (49) et Vendée (85).",
+    "Artisans français basés en Vienne (86) : plomberie, électricité, climatisation, peinture, aménagement extérieur (terrasse, piscine) et nettoyage de toiture & façade. Un seul interlocuteur, devis gratuit en Vienne (86), Deux-Sèvres (79), Maine-et-Loire (49) et Vendée (85).",
   applicationName: SITE.name,
   authors: [{ name: SITE.name }],
   alternates: { canonical: "/" },

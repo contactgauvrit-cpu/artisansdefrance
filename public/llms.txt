@@ -5,12 +5,10 @@
 ## Services
 - [Plombier — plomberie](https://www.artisansdefrancetravaux.fr/plomberie): dépannage, recherche de fuite, chauffe-eau, sanitaires, mise aux normes.
 - [Électricien — électricité](https://www.artisansdefrancetravaux.fr/electricite): mise aux normes du tableau, rénovation électrique, éclairage, borne de recharge.
-- [Climatisation](https://www.artisansdefrancetravaux.fr/climatisation): climatisation réversible, pompe à chaleur (PAC) air/air et air/eau.
-- [Rénovation générale](https://www.artisansdefrancetravaux.fr/renovation-generale): rénovation de maison et d'appartement, tous corps d'état.
-- [Aménagement intérieur](https://www.artisansdefrancetravaux.fr/amenagement-interieur): cuisine, salle de bain, cloisons, rangements sur mesure.
+- [Climatisation](https://www.artisansdefrancetravaux.fr/climatisation): climatisation réversible air/air, pose et entretien.
 - [Peinture intérieure & extérieure](https://www.artisansdefrancetravaux.fr/peinture): peinture, enduits, ravalement de façade.
-- [Création & aménagement extérieur](https://www.artisansdefrancetravaux.fr/amenagement-exterieur): terrasse, jardin, allées, clôtures.
-- [Piscine](https://www.artisansdefrancetravaux.fr/piscine): construction et rénovation de piscine, plage et abords.
+- [Création & aménagement extérieur](https://www.artisansdefrancetravaux.fr/amenagement-exterieur): terrasse, piscine, terrassement, allées, clôtures, jardin.
+- [Nettoyage toiture, terrasse & façade](https://www.artisansdefrancetravaux.fr/nettoyage): démoussage et hydrofuge de toiture, nettoyage de façade et de terrasse.
 
 ## Zone d'intervention
 - [Vienne (86)](https://www.artisansdefrancetravaux.fr/zone/vienne-86): Poitiers, Châtellerault, Buxerolles, Chauvigny, Loudun, Montmorillon…

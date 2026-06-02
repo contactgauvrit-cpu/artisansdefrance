@@ -18,7 +18,7 @@ export function localBusinessJsonLd() {
     "@id": `${SITE.url}/#business`,
     name: SITE.name,
     description:
-      "Entreprise multiservice du bâtiment en Vienne (86) : plomberie, électricité, climatisation, rénovation, peinture, aménagement intérieur et extérieur, piscine. Devis gratuit, un seul interlocuteur.",
+      "Entreprise multiservice du bâtiment en Vienne (86) : plomberie, électricité, climatisation air/air, peinture, aménagement extérieur (terrasse, piscine, terrassement) et nettoyage de toiture, terrasse et façade. Devis gratuit, un seul interlocuteur.",
     url: SITE.url,
     telephone: SITE.phoneHref,
     email: SITE.email,

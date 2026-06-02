@@ -71,8 +71,8 @@ export default async function OpengraphImage() {
             Tous vos travaux, du sol au plafond, par des artisans français
           </div>
           <div style={{ fontSize: 27, color: "#6B7280", maxWidth: 1010 }}>
-            Plomberie · Électricité · Climatisation · Rénovation · Piscine — Vienne (86),
-            Deux-Sèvres (79), Maine-et-Loire (49), Vendée (85)
+            Plomberie · Électricité · Climatisation · Peinture · Extérieur · Nettoyage — Vienne
+            (86), Deux-Sèvres (79), Maine-et-Loire (49), Vendée (85)
           </div>
         </div>
 
