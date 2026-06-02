@@ -16,11 +16,13 @@ const esc = (s: string) =>
  * Ne lève jamais : si non configuré ou en échec, on log seulement (le devis est
  * déjà enregistré côté Supabase).
  */
-export async function sendLeadEmail(lead: LeadEmail): Promise<boolean> {
+export async function sendLeadEmail(
+  lead: LeadEmail
+): Promise<{ sent: boolean; status: number; detail: string }> {
   const apiKey = process.env.BREVO_API_KEY;
   const senderEmail = process.env.BREVO_SENDER_EMAIL;
   const to = process.env.LEAD_NOTIFY_EMAIL || "contact.gauvrit@gmail.com";
-  if (!apiKey || !senderEmail) return false; // non configuré → on saute
+  if (!apiKey || !senderEmail) return { sent: false, status: 0, detail: "env BREVO manquant" };
 
   const html = `
     <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:auto">
@@ -55,7 +57,7 @@ export async function sendLeadEmail(lead: LeadEmail): Promise<boolean> {
   if (!res.ok) {
     const t = await res.text();
     console.error("[brevo] échec envoi:", res.status, t.slice(0, 300));
-    return false;
+    return { sent: false, status: res.status, detail: t.slice(0, 200) };
   }
-  return true;
+  return { sent: true, status: res.status, detail: "ok" };
 }

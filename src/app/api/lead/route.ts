@@ -57,12 +57,19 @@ export async function POST(req: Request) {
   }
 
   // 3) Notification e-mail (Brevo) — ne bloque pas le succès si échec
-  let emailed = false;
+  let emailRes = { sent: false, status: 0, detail: "" };
   try {
-    emailed = await sendLeadEmail({ nom, tel, email, type, message });
+    emailRes = await sendLeadEmail({ nom, tel, email, type, message });
   } catch (e) {
+    emailRes = { sent: false, status: 0, detail: (e as Error).message.slice(0, 200) };
     console.error("[lead] erreur e-mail:", (e as Error).message);
   }
 
-  return NextResponse.json({ ok: true, emailed });
+  // emailStatus/emailDetail = debug temporaire pour diagnostiquer Brevo
+  return NextResponse.json({
+    ok: true,
+    emailed: emailRes.sent,
+    emailStatus: emailRes.status,
+    emailDetail: emailRes.detail,
+  });
 }
