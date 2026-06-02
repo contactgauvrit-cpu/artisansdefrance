@@ -79,6 +79,33 @@ export default async function ServiceHubPage({ params }: Props) {
           </div>
         </section>
 
+        {(c.expertise?.length || c.highlights.length) ? (
+          <section className="wrap section-tight">
+            <h2 className="block-title">
+              Notre savoir-faire en <em>{service.title.toLowerCase()}</em>
+            </h2>
+            {c.expertise && c.expertise.length > 0 && (
+              <div
+                className="prose-local"
+                style={{ marginBottom: c.highlights.length ? 18 : 0 }}
+              >
+                {c.expertise.map((p, i) => (
+                  <p key={i} className={i ? "muted" : ""}>
+                    {p}
+                  </p>
+                ))}
+              </div>
+            )}
+            {c.highlights.length > 0 && (
+              <ul className="prestations two" style={{ maxWidth: 880 }}>
+                {c.highlights.map((h) => (
+                  <li key={h}>{h}</li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ) : null}
+
         <section className="wrap section-tight">
           <h2 className="block-title">
             {service.title} <em>près de chez vous</em>

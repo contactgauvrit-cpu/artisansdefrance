@@ -1,6 +1,7 @@
 import { type Commune, deptByCode, neighbors, popBand } from "./communes";
 import { type Service } from "./content";
 import { serviceMeta, type ServiceMeta } from "./services-meta";
+import { PLAYBOOKS, type LocalCtx } from "./service-playbooks";
 import { SITE } from "./content";
 
 /* ---------- variation déterministe (stable par page, variée entre pages) ---------- */
@@ -26,6 +27,7 @@ function pickMany<T>(arr: T[], n: number, count: number): T[] {
 type Ctx = {
   nom: string;
   dn: string;
+  enDept: string;
   deDept: string;
   deptCode: string;
   cp: string;
@@ -44,6 +46,8 @@ export type ServiceCommuneContent = {
   h1: string;
   intro: string[];
   localContext: string[];
+  expertise?: { title: string; paras: string[] };
+  highlights: string[];
   reasons: string[];
   prestations: string[];
   faq: FAQ[];
@@ -138,6 +142,7 @@ export function buildServiceCommune(service: Service, commune: Commune): Service
   const ctx: Ctx = {
     nom: commune.nom,
     dn,
+    enDept: dform.en,
     deDept: dform.de,
     deptCode: commune.dept,
     cp: commune.cp,
@@ -158,16 +163,41 @@ export function buildServiceCommune(service: Service, commune: Commune): Service
     `Travaux de ${ctx.serviceLower} à ${commune.nom} (${commune.cp}) par des artisans locaux. Devis gratuit, un seul interlocuteur, travail soigné.`,
   ];
 
+  // Contenu d'expertise + FAQ spécifiques métier (playbook), si disponible
+  const pb = PLAYBOOKS[service.slug];
+  const expertise = pb
+    ? { title: pb.expertiseTitle(ctx), paras: pickMany(pb.expertise, s >> 13, 3).map((f) => f(ctx)) }
+    : undefined;
+  const highlights = pb ? pickMany(pb.highlights, s >> 17, 4).map((f) => f(ctx)) : [];
+
+  // FAQ : 2-3 questions spécifiques métier puis questions génériques (≈ 6 au total)
+  const serviceFaq = pb ? pickMany(pb.faq, s >> 11, 3).map((f) => f(ctx)) : [];
+  const genericFaq = pickMany(FAQ_POOL, s >> 7, pb ? 3 : 4).map((f) => f(ctx));
+  const faq = dedupeFaq([...serviceFaq, ...genericFaq]);
+
   return {
     title,
     description: pick(descPool, s >> 2),
     h1,
     intro: [pick(INTRO_1, s)(ctx), pick(INTRO_2, s >> 3)(ctx)],
     localContext: [pick(CONTEXT, s >> 5)(ctx)],
+    expertise,
+    highlights,
     reasons: meta.benefices,
     prestations: meta.prestations,
-    faq: pickMany(FAQ_POOL, s >> 7, 4).map((f) => f(ctx)),
+    faq,
   };
+}
+
+/** Évite deux questions identiques dans la FAQ d'une page. */
+function dedupeFaq(faq: FAQ[]): FAQ[] {
+  const seen = new Set<string>();
+  return faq.filter((f) => {
+    const k = f.q.toLowerCase();
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
 }
 
 /* ---------- contenu d'un hub service (/[service]) ---------- */
@@ -176,12 +206,29 @@ export type ServiceHubContent = {
   description: string;
   h1: string;
   intro: string[];
+  expertise?: string[];
+  highlights: string[];
   prestations: string[];
 };
 
 export function buildServiceHub(service: Service): ServiceHubContent {
   const meta = serviceMeta(service.slug);
   const sl = service.title.toLowerCase();
+  const pb = PLAYBOOKS[service.slug];
+  // Contexte « région » pour les points clés (les highlights n'utilisent pas le nom de commune)
+  const hubCtx: LocalCtx = {
+    nom: "chez vous",
+    dn: "",
+    enDept: "sur nos départements",
+    deDept: "",
+    deptCode: "",
+    cp: "",
+    band: "",
+    serviceLower: sl,
+    trade: meta.h1Trade,
+    metier: meta.metier,
+    nb: [],
+  };
   return {
     title: `${service.title} en Vienne (86), Deux-Sèvres, Maine-et-Loire, Vendée — Artisans de France`,
     description: `${service.title} par des artisans français : ${meta.keywords.slice(0, 3).join(", ")}. Devis gratuit en Vienne (86), Deux-Sèvres (79), Maine-et-Loire (49) et Vendée (85).`,
@@ -190,6 +237,8 @@ export function buildServiceHub(service: Service): ServiceHubContent {
       `Artisans de France réalise vos travaux de ${sl} sur quatre départements : la Vienne (86), les Deux-Sèvres (79), le Maine-et-Loire (49) et la Vendée (85). Particuliers et propriétaires, vous bénéficiez d'un interlocuteur unique, d'un devis gratuit et d'un travail soigné.`,
       `Sélectionnez votre commune ci-dessous pour découvrir notre intervention près de chez vous, ou contactez-nous directement : nous étudions chaque projet de ${sl} et nous nous déplaçons pour établir une estimation gratuite.`,
     ],
+    expertise: pb?.hubExpertise,
+    highlights: pb ? pb.highlights.map((f) => f(hubCtx)) : [],
     prestations: meta.prestations,
   };
 }

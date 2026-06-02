@@ -1,11 +1,11 @@
 # Artisans de France
 
-> Entreprise multiservice du bâtiment basée en Vienne (86), Nouvelle-Aquitaine. Création et rénovation par des artisans français : plomberie, électricité, climatisation, rénovation générale, aménagement intérieur, peinture, aménagement extérieur et piscine. Devis gratuit, un seul interlocuteur. Zone d'intervention : Vienne (86), Deux-Sèvres (79), Maine-et-Loire (49) et Vendée (85). Téléphone : 07 49 98 86 95.
+> Entreprise multiservice du bâtiment basée en Vienne (86), Nouvelle-Aquitaine. Création et rénovation par des artisans français : plomberie, électricité, climatisation réversible air/air (pompe à chaleur Airton, marque française), peinture, aménagement extérieur (terrasse, piscine, terrassement) et nettoyage de toiture, terrasse et façade. Devis gratuit, un seul interlocuteur. Zone d'intervention : Vienne (86), Deux-Sèvres (79), Maine-et-Loire (49) et Vendée (85). Téléphone : 07 49 98 86 95.
 
 ## Services
 - [Plombier — plomberie](https://www.artisansdefrancetravaux.fr/plomberie): dépannage, recherche de fuite, chauffe-eau, sanitaires, mise aux normes.
 - [Électricien — électricité](https://www.artisansdefrancetravaux.fr/electricite): mise aux normes du tableau, rénovation électrique, éclairage, borne de recharge.
-- [Climatisation](https://www.artisansdefrancetravaux.fr/climatisation): climatisation réversible air/air, pose et entretien.
+- [Climatisation Airton](https://www.artisansdefrancetravaux.fr/climatisation): climatisation réversible air/air Airton (marque française), pompe à chaleur connectée WiFi, monosplit et multisplit, dimensionnement, pose et mise en service.
 - [Peinture intérieure & extérieure](https://www.artisansdefrancetravaux.fr/peinture): peinture, enduits, ravalement de façade.
 - [Création & aménagement extérieur](https://www.artisansdefrancetravaux.fr/amenagement-exterieur): terrasse, piscine, terrassement, allées, clôtures, jardin.
 - [Nettoyage toiture, terrasse & façade](https://www.artisansdefrancetravaux.fr/nettoyage): démoussage et hydrofuge de toiture, nettoyage de façade et de terrasse.

@@ -39,7 +39,7 @@ export type Service = {
 export const SERVICES: Service[] = [
   { slug: "plomberie", icon: "plomberie", title: "Plomberie", desc: "Installation, dépannage et rénovation de plomberie : sanitaires, chauffe-eau, recherche de fuite et mise aux normes." },
   { slug: "electricite", icon: "electricite", title: "Électricité", desc: "Rénovation électrique, mise en sécurité du tableau, éclairage et bornes : une installation conforme et fiable." },
-  { slug: "climatisation", icon: "clim", title: "Climatisation", desc: "Pose et entretien de climatisation réversible air/air : un confort toute l'année et des factures maîtrisées." },
+  { slug: "climatisation", icon: "clim", title: "Climatisation", desc: "Pose de climatisation réversible air/air Airton (marque française) : pompe à chaleur connectée, confort toute l'année et factures maîtrisées." },
   { slug: "peinture", icon: "peinture", title: "Peinture intérieure & extérieure", desc: "Peinture, enduits et ravalement de façade : des surfaces nettes et durables, en intérieur comme en extérieur." },
   { slug: "amenagement-exterieur", icon: "exterieur", title: "Création & aménagement extérieur", desc: "Terrasse, piscine, terrassement, allées, clôtures et jardin : nous créons et aménageons vos espaces extérieurs." },
   { slug: "nettoyage", icon: "nettoyage", title: "Nettoyage toiture, terrasse & façade", desc: "Démoussage et nettoyage de toiture, terrasse et façade : on protège votre habitat et on lui redonne de l'éclat." },

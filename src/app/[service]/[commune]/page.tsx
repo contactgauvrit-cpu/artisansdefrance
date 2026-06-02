@@ -104,6 +104,25 @@ export default async function ServiceCommunePage({ params }: Props) {
           </div>
         </section>
 
+        {/* Expertise métier (contenu de fond + points clés) */}
+        {c.expertise && (
+          <section className="wrap section-tight">
+            <h2 className="block-title">{c.expertise.title}</h2>
+            <div className="prose-local">
+              {c.expertise.paras.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+            {c.highlights.length > 0 && (
+              <ul className="prestations two" style={{ maxWidth: 880, marginTop: 18 }}>
+                {c.highlights.map((h) => (
+                  <li key={h}>{h}</li>
+                ))}
+              </ul>
+            )}
+          </section>
+        )}
+
         {/* Prestations */}
         <section className="wrap section-tight">
           <h2 className="block-title">
