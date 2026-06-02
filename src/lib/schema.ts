@@ -28,7 +28,6 @@ export function localBusinessJsonLd() {
       `${SITE.url}/assets/realisations/peinture-decoration.jpg`,
     ],
     logo: `${SITE.url}/assets/coq-metal.png`,
-    priceRange: "€€",
     slogan: SITE.baseline,
     address: {
       "@type": "PostalAddress",
@@ -126,7 +125,6 @@ export function serviceJsonLd(opts: {
       name: SITE.name,
       image: `${SITE.url}/assets/coq-metal.png`,
       telephone: SITE.phoneHref,
-      priceRange: "€€",
       address: {
         "@type": "PostalAddress",
         addressLocality: opts.communeNom,
