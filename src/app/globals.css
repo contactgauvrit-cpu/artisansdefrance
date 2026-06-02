@@ -493,7 +493,7 @@ html.anim .reveal-mask.in{clip-path:inset(0 0 0 0)}
 html, body,
 a, button, .btn, .chip, .scard, .dept, .svc-tile, .burger,
 summary, select, label, [role="button"] {
-  cursor: url("/assets/cursor-fleur.png") 16 2, auto;
+  cursor: url("/assets/cursor-fleur.png?v=2") 16 2, auto;
 }
 input[type="text"], input[type="tel"], input[type="email"], textarea {
   cursor: text;
