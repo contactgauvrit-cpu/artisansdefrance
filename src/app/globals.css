@@ -192,6 +192,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
    ========================================================= */
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .scard{
+  display:block;text-decoration:none;color:inherit;
   background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);
   padding:30px 26px 28px;transition:.22s ease;position:relative;overflow:hidden;
 }
@@ -202,9 +203,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
 .scard:hover .ic svg{color:#fff}
 .scard h3{font-size:21px;margin-bottom:9px}
 .scard p{font-size:14.5px;color:var(--gray);line-height:1.55}
-.scard .more{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--copper);display:inline-flex;align-items:center;gap:7px;opacity:0;transform:translateX(-6px);transition:.22s}
+.scard .more{margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--copper-deep);display:inline-flex;align-items:center;gap:7px;border:1px solid var(--copper-soft);border-radius:9px;padding:8px 14px;background:var(--copper-wash);transition:.22s}
 .scard .more svg{width:14px;height:14px}
-.scard:hover .more{opacity:1;transform:translateX(0)}
+.scard:hover .more{background:var(--copper);color:#fff;border-color:var(--copper)}
 
 /* =========================================================
    POURQUOI NOUS

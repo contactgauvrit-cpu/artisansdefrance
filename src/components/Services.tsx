@@ -20,17 +20,15 @@ export function Services() {
 
         <div className="services-grid" id="servicesGrid">
           {SERVICES.map((s, i) => (
-            <article className="scard reveal" style={stagger(i)} key={s.slug}>
+            <Link className="scard reveal" style={stagger(i)} key={s.slug} href={`/${s.slug}`}>
               <div className="ic">{serviceIcons[s.icon]}</div>
-              <h3>
-                <Link href={`/${s.slug}`}>{s.title}</Link>
-              </h3>
+              <h3>{s.title}</h3>
               <p>{s.desc}</p>
-              <a className="more" href="#contact">
-                Demander un devis
+              <span className="more">
+                Découvrir
                 <IconArrow />
-              </a>
-            </article>
+              </span>
+            </Link>
           ))}
         </div>
       </div>
