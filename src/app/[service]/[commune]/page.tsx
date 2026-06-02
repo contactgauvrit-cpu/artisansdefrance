@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = buildServiceCommune(service, commune);
   const path = `/${ss}/${cs}`;
   return {
-    title: c.title,
+    title: { absolute: c.title },
     description: c.description,
     alternates: { canonical: path },
     openGraph: { title: c.title, description: c.description, url: path, type: "website" },

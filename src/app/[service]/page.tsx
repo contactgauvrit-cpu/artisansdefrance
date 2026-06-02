@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = buildServiceHub(service);
   const path = `/${slug}`;
   return {
-    title: c.title,
+    title: { absolute: c.title },
     description: c.description,
     alternates: { canonical: path },
     openGraph: { title: c.title, description: c.description, url: path, type: "website" },

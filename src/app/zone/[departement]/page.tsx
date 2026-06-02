@@ -25,7 +25,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!dept) return {};
   const path = `/zone/${dept.slug}`;
   return {
-    title: `Artisans en ${dept.nom} (${dept.code}) — Plomberie, électricité, rénovation | Artisans de France`,
+    title: {
+      absolute: `Artisans en ${dept.nom} (${dept.code}) — Plomberie, électricité, rénovation | Artisans de France`,
+    },
     description: `Artisans de France intervient ${dept.en} (${dept.code}), à ${dept.prefecture} comme dans les communes alentour : plomberie, électricité, rénovation, peinture, piscine. Devis gratuit.`,
     alternates: { canonical: path },
     openGraph: { url: path, type: "website" },
