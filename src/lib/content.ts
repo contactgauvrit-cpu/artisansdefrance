@@ -20,7 +20,7 @@ export const SITE = {
   baseDept: "Vienne",
   baseDeptCode: "86",
   hours: "Lun – Sam : 8 h – 19 h",
-  hoursNote: "Intervention d'urgence sur demande",
+  hoursNote: "Dépannage rapide aux heures d'ouverture",
   areaServed: ["86", "79", "49", "85"],
 } as const;
 
@@ -89,8 +89,8 @@ export const PROJECT_TYPES = [
 // et nourrit la citabilité IA). Repris en FAQPage JSON-LD.
 export const HOME_FAQ: { q: string; a: string }[] = [
   {
-    q: "Intervenez-vous en urgence pour une fuite ou une panne ?",
-    a: "Oui. Pour les dépannages de plomberie et d'électricité, nous intervenons en urgence en Vienne (86) et aux alentours, généralement dans la journée. Appelez-nous au 07 49 98 86 95.",
+    q: "Intervenez-vous rapidement en cas de fuite ou de panne ?",
+    a: "Oui. Pour les dépannages de plomberie et d'électricité, nous intervenons rapidement — souvent dans la journée — pendant nos horaires d'ouverture (du lundi au samedi, 8 h – 19 h). Appelez-nous au 07 49 98 86 95.",
   },
   {
     q: "Le devis est-il vraiment gratuit et sans engagement ?",

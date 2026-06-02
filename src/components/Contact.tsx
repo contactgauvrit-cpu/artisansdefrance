@@ -234,7 +234,7 @@ export function Contact() {
               <div>
                 <div className="k">Horaires</div>
                 <div className="v">
-                  Lun – Sam : 8 h – 19 h<span>Intervention d&apos;urgence sur demande</span>
+                  Lun – Sam : 8 h – 19 h<span>Dépannage rapide aux heures d&apos;ouverture</span>
                 </div>
               </div>
             </div>
