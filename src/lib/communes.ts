@@ -48,6 +48,37 @@ export function communeBySlug(slug: string): Commune | undefined {
   return ALL_COMMUNES.find((c) => c.slug === slug);
 }
 
+/**
+ * Communes PRIORITAIRES (focus Vendée) — toujours prébâties (SSG) + sitemap,
+ * quelle que soit leur population, pour faire vieillir ces URLs en premier.
+ */
+export const PRIORITY_SLUGS = [
+  "la-roche-sur-yon",
+  "les-sables-d-olonne",
+  "challans",
+  "montaigu-vendee",
+  "saint-gilles-croix-de-vie",
+  "fontenay-le-comte",
+  "lucon",
+  "saint-hilaire-de-riez",
+  "saint-jean-de-monts",
+  "les-herbiers",
+];
+
+export function priorityCommunes(): Commune[] {
+  return PRIORITY_SLUGS.map((s) => communeBySlug(s)).filter((c): c is Commune => Boolean(c));
+}
+
+const isPrioritySet = new Set(PRIORITY_SLUGS);
+export const isPriorityCommune = (slug: string) => isPrioritySet.has(slug);
+
+/** Communes prébâties en SSG = Tier 1 ∪ communes prioritaires (dédoublonné). */
+export function ssgCommunes(): Commune[] {
+  const map = new Map<string, Commune>();
+  for (const c of [...tier1(), ...priorityCommunes()]) map.set(c.code, c);
+  return [...map.values()];
+}
+
 /** Bande de population (sert à varier le contenu, jamais affichée telle quelle). */
 export function popBand(pop: number): "metropole" | "ville" | "bourg" | "village" {
   if (pop >= 40000) return "metropole";

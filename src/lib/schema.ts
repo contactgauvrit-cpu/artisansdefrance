@@ -94,10 +94,12 @@ export function webSiteJsonLd() {
   };
 }
 
-/** Service schema (page service × commune). */
+/** Service schema (page service × commune) — provider local enrichi. */
 export function serviceJsonLd(opts: {
   serviceName: string;
-  areaName: string;
+  communeNom: string;
+  region: string;
+  postalCode: string;
   url: string;
   description: string;
 }) {
@@ -108,8 +110,22 @@ export function serviceJsonLd(opts: {
     serviceType: opts.serviceName,
     description: opts.description,
     url: opts.url,
-    areaServed: { "@type": "City", name: opts.areaName },
-    provider: { "@type": "GeneralContractor", "@id": `${SITE.url}/#business`, name: SITE.name },
+    areaServed: { "@type": "City", name: opts.communeNom },
+    provider: {
+      "@type": ["GeneralContractor", "HomeAndConstructionBusiness"],
+      "@id": `${SITE.url}/#business`,
+      name: SITE.name,
+      image: `${SITE.url}/assets/coq-metal.png`,
+      telephone: SITE.phoneHref,
+      priceRange: "€€",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: opts.communeNom,
+        addressRegion: opts.region,
+        postalCode: opts.postalCode,
+        addressCountry: "FR",
+      },
+    },
     offers: { "@type": "Offer", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
   };
 }

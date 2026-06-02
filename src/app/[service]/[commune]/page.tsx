@@ -9,16 +9,17 @@ import { ServiceTiles } from "@/components/ServiceTiles";
 import { SERVICES, SITE } from "@/lib/content";
 import { serviceBySlug, serviceMeta } from "@/lib/services-meta";
 import { buildServiceCommune } from "@/lib/page-content";
-import { communeBySlug, deptByCode, deptName, neighbors, tier1 } from "@/lib/communes";
+import { communeBySlug, deptByCode, deptName, neighbors, ssgCommunes } from "@/lib/communes";
 import { breadcrumbJsonLd, faqPageJsonLd, jsonLdScript, serviceJsonLd } from "@/lib/schema";
+import { IconArrow, IconPhone } from "@/lib/icons";
 
 type Props = { params: Promise<{ service: string; commune: string }> };
 
-export const dynamicParams = true; // communes hors Tier 1 → ISR
+export const dynamicParams = true; // communes hors SSG → ISR
 export const revalidate = 86400;
 
 export function generateStaticParams() {
-  const communes = tier1();
+  const communes = ssgCommunes(); // Tier 1 ∪ communes prioritaires (Vendée)
   const params: { service: string; commune: string }[] = [];
   for (const s of SERVICES) for (const c of communes) params.push({ service: s.slug, commune: c.slug });
   return params;
@@ -49,6 +50,7 @@ export default async function ServiceCommunePage({ params }: Props) {
   const c = buildServiceCommune(service, commune);
   const dn = deptName(commune.dept);
   const dept = deptByCode(commune.dept)!;
+  const sl = service.title.toLowerCase();
   const path = `/${ss}/${cs}`;
   const nbs = neighbors(commune, 8);
   const crumbs = [
@@ -62,42 +64,62 @@ export default async function ServiceCommunePage({ params }: Props) {
       <Header />
       <main id="top">
         <Breadcrumb items={crumbs} />
+
+        {/* En-tête : H1 + accroche + CTA above-the-fold */}
         <section className="wrap page-head">
           <span className="eyebrow">
             {service.title} · {dn} ({commune.dept})
           </span>
           <h1>
             {meta.h1Trade} à <em>{commune.nom}</em>{" "}
-            <span style={{ color: "var(--gray-2)" }}>({commune.dept})</span>
+            <span style={{ color: "var(--gray-2)" }}>({commune.cp})</span>
           </h1>
-        </section>
-
-        <section className="wrap section-tight">
-          <div className="split">
-            <div className="prose-local">
-              {c.intro.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-              {c.localContext.map((p, i) => (
-                <p key={`lc${i}`} className="muted">
-                  {p}
-                </p>
-              ))}
-            </div>
-            <div className="card-soft">
-              <h3>Nos prestations de {service.title.toLowerCase()}</h3>
-              <ul className="prestations">
-                {c.prestations.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
-            </div>
+          <p className="lede">
+            Des artisans locaux de confiance pour tous vos travaux de {sl} à {commune.nom} et ses
+            alentours.
+          </p>
+          <div className="hero-cta">
+            <a href="/#contact" className="btn btn-primary">
+              Demander un devis gratuit
+              <IconArrow />
+            </a>
+            <a href={`tel:${SITE.phoneHref}`} className="btn btn-ghost">
+              <IconPhone />
+              {SITE.phoneDisplay}
+            </a>
           </div>
         </section>
 
+        {/* Intro localisée */}
+        <section className="wrap section-tight">
+          <div className="prose-local">
+            {c.intro.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+            {c.localContext.map((p, i) => (
+              <p key={`lc${i}`} className="muted">
+                {p}
+              </p>
+            ))}
+          </div>
+        </section>
+
+        {/* Prestations */}
         <section className="wrap section-tight">
           <h2 className="block-title">
-            Faire appel à un {meta.metier} <em>à {commune.nom}</em>
+            Nos prestations de <em>{sl}</em> à {commune.nom}
+          </h2>
+          <ul className="prestations two" style={{ maxWidth: 880 }}>
+            {c.prestations.map((p) => (
+              <li key={p}>{p}</li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Réassurance */}
+        <section className="wrap section-tight">
+          <h2 className="block-title">
+            Pourquoi choisir nos artisans en <em>{dn}</em> ({commune.dept}) ?
           </h2>
           <ul className="prestations" style={{ maxWidth: 760 }}>
             {c.reasons.map((r) => (
@@ -106,6 +128,30 @@ export default async function ServiceCommunePage({ params }: Props) {
           </ul>
         </section>
 
+        {/* Zone d'intervention autour de la ville (maillage local) */}
+        <section className="wrap section-tight">
+          <h2 className="block-title">
+            Zone d&apos;intervention autour de <em>{commune.nom}</em>
+          </h2>
+          <p className="prose-local" style={{ marginBottom: 16 }}>
+            Nous intervenons à {commune.nom} et dans les communes voisines :
+          </p>
+          <div className="link-cloud">
+            {nbs.map((n) => (
+              <Link key={n.code} href={`/${ss}/${n.slug}`} className="chip">
+                {meta.h1Trade} à {n.nom}
+              </Link>
+            ))}
+            <Link href={`/${ss}`} className="chip" style={{ borderStyle: "dashed" }}>
+              Toutes les communes →
+            </Link>
+            <Link href={`/zone/${dept.slug}`} className="chip" style={{ borderStyle: "dashed" }}>
+              {dn} ({commune.dept}) →
+            </Link>
+          </div>
+        </section>
+
+        {/* FAQ locale */}
         <section className="wrap section-tight">
           <h2 className="block-title">
             Questions <em>fréquentes</em> — {meta.h1Trade.toLowerCase()} à {commune.nom}
@@ -124,25 +170,7 @@ export default async function ServiceCommunePage({ params }: Props) {
           <LocalCTA commune={commune.nom} />
         </section>
 
-        <section className="wrap section-tight">
-          <h2 className="block-title">
-            {meta.h1Trade} dans les <em>communes voisines</em>
-          </h2>
-          <div className="link-cloud">
-            {nbs.map((n) => (
-              <Link key={n.code} href={`/${ss}/${n.slug}`} className="chip">
-                {meta.h1Trade} à {n.nom}
-              </Link>
-            ))}
-            <Link href={`/${ss}`} className="chip" style={{ borderStyle: "dashed" }}>
-              Toutes les communes →
-            </Link>
-            <Link href={`/zone/${dept.slug}`} className="chip" style={{ borderStyle: "dashed" }}>
-              {dn} ({commune.dept}) →
-            </Link>
-          </div>
-        </section>
-
+        {/* Autres services dans la même commune */}
         <section className="wrap section-tight">
           <h2 className="block-title">
             Nos autres services à <em>{commune.nom}</em>
@@ -157,7 +185,9 @@ export default async function ServiceCommunePage({ params }: Props) {
           __html: jsonLdScript(
             serviceJsonLd({
               serviceName: `${meta.h1Trade} à ${commune.nom}`,
-              areaName: commune.nom,
+              communeNom: commune.nom,
+              region: dn,
+              postalCode: commune.cp,
               url: `${SITE.url}${path}`,
               description: c.description,
             }),

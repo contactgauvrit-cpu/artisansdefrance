@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SERVICES, SITE } from "@/lib/content";
-import { DEPTS, tier1 } from "@/lib/communes";
+import { DEPTS, ssgCommunes, isPriorityCommune } from "@/lib/communes";
 
 /**
  * Sitemap : accueil + zone + hubs départements + hubs services + pages
@@ -32,14 +32,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  const communes = tier1();
+  const communes = ssgCommunes();
   for (const s of SERVICES) {
     for (const c of communes) {
       urls.push({
         url: `${SITE.url}/${s.slug}/${c.slug}`,
         lastModified: now,
         changeFrequency: "monthly",
-        priority: 0.6,
+        priority: isPriorityCommune(c.slug) ? 0.7 : 0.6,
       });
     }
   }

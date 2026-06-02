@@ -150,12 +150,12 @@ export function buildServiceCommune(service: Service, commune: Commune): Service
   };
 
   const h1 = `${meta.h1Trade} à ${commune.nom} (${commune.dept})`;
-  const title = `${meta.h1Trade} à ${commune.nom} (${commune.dept}) — Artisans de France | Devis gratuit`;
+  const title = `${meta.h1Trade} à ${commune.nom} (${commune.cp}) | Devis gratuit — Artisans de France`;
 
   const descPool = [
-    `${meta.h1Trade} à ${commune.nom} (${commune.dept}) : ${meta.keywords.slice(0, 3).join(", ")}. Artisans français, devis gratuit et intervention soignée.`,
-    `Travaux de ${ctx.serviceLower} à ${commune.nom} par des artisans français. Devis gratuit, un seul interlocuteur, délais tenus. ☎ ${SITE.phoneDisplay}.`,
-    `Besoin d'un ${meta.metier} à ${commune.nom} (${commune.dept}) ? Artisans de France : devis gratuit, travail garanti, intervention rapide ${dform.en}.`,
+    `Besoin d'un ${meta.metier} qualifié à ${commune.nom} (${commune.cp}) ? Intervention rapide et travail soigné par nos artisans locaux ${dform.en}. Devis gratuit.`,
+    `${meta.h1Trade} à ${commune.nom} : ${meta.keywords.slice(0, 3).join(", ")}. Artisans français, devis gratuit, délais tenus. ☎ ${SITE.phoneDisplay}.`,
+    `Travaux de ${ctx.serviceLower} à ${commune.nom} (${commune.cp}) par des artisans locaux. Devis gratuit, un seul interlocuteur, garantie décennale.`,
   ];
 
   return {
