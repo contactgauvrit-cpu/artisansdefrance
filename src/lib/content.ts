@@ -54,10 +54,10 @@ export const WHY: { n: string; title: string; desc: string }[] = [
 ];
 
 export const DEPARTEMENTS: { num: string; nom: string; villes: string[] }[] = [
+  { num: "85", nom: "Vendée", villes: ["La Roche-sur-Yon", "Les Sables-d'Olonne", "Challans", "Les Herbiers", "Fontenay-le-Comte", "Luçon", "Saint-Gilles-Croix-de-Vie", "Saint-Hilaire-de-Riez"] },
   { num: "86", nom: "Vienne", villes: ["Poitiers", "Châtellerault", "Montmorillon", "Loudun", "Civray", "Chauvigny"] },
   { num: "79", nom: "Deux-Sèvres", villes: ["Niort", "Bressuire", "Parthenay", "Thouars", "Melle"] },
   { num: "49", nom: "Maine-et-Loire", villes: ["Angers", "Cholet", "Saumur", "Doué-en-Anjou"] },
-  { num: "85", nom: "Vendée", villes: ["La Roche-sur-Yon", "Les Sables-d'Olonne", "Challans", "Fontenay-le-Comte"] },
 ];
 
 /** Réalisations réelles (photos de chantiers Artisans de France). */

@@ -4,8 +4,8 @@ import { DEPTS, ssgCommunes, isPriorityCommune } from "@/lib/communes";
 
 /**
  * Sitemap : accueil + zone + hubs départements + hubs services + pages
- * service×commune du Tier 1. Les communes hors Tier 1 (ISR) seront ajoutées
- * lors de l'extension de contenu (étape 7 de la mission).
+ * service×commune prébâties (ssgCommunes). La VENDÉE (85) est couverte à 100 %
+ * (priorité 0.8, crawl hebdomadaire) ; les autres départements = Tier 1.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -37,11 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const communes = ssgCommunes();
   for (const s of SERVICES) {
     for (const c of communes) {
+      const isVendee = c.dept === "85";
       urls.push({
         url: `${SITE.url}/${s.slug}/${c.slug}`,
         lastModified: now,
-        changeFrequency: "monthly",
-        priority: isPriorityCommune(c.slug) ? 0.7 : 0.6,
+        changeFrequency: isVendee ? "weekly" : "monthly",
+        priority: isVendee ? 0.8 : isPriorityCommune(c.slug) ? 0.7 : 0.6,
       });
     }
   }

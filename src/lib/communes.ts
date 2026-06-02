@@ -16,11 +16,12 @@ export type Dept = {
   le: string; // "la Vienne", "les Deux-Sèvres"…
 };
 
+// Vendée (85) en tête : marché prioritaire (mise en avant sur tout le site).
 export const DEPTS: Dept[] = [
+  { code: "85", nom: "Vendée", slug: "vendee-85", prefecture: "La Roche-sur-Yon", en: "en Vendée", de: "de la Vendée", le: "la Vendée" },
   { code: "86", nom: "Vienne", slug: "vienne-86", prefecture: "Poitiers", en: "en Vienne", de: "de la Vienne", le: "la Vienne" },
   { code: "79", nom: "Deux-Sèvres", slug: "deux-sevres-79", prefecture: "Niort", en: "dans les Deux-Sèvres", de: "des Deux-Sèvres", le: "les Deux-Sèvres" },
   { code: "49", nom: "Maine-et-Loire", slug: "maine-et-loire-49", prefecture: "Angers", en: "dans le Maine-et-Loire", de: "du Maine-et-Loire", le: "le Maine-et-Loire" },
-  { code: "85", nom: "Vendée", slug: "vendee-85", prefecture: "La Roche-sur-Yon", en: "en Vendée", de: "de la Vendée", le: "la Vendée" },
 ];
 
 export const deptByCode = (code: string) => DEPTS.find((d) => d.code === code);
@@ -72,10 +73,19 @@ export function priorityCommunes(): Commune[] {
 const isPrioritySet = new Set(PRIORITY_SLUGS);
 export const isPriorityCommune = (slug: string) => isPrioritySet.has(slug);
 
-/** Communes prébâties en SSG = Tier 1 ∪ communes prioritaires (dédoublonné). */
+/** TOUTES les communes de Vendée (85) — marché prioritaire, intégralement prébâti. */
+export function allVendee(): Commune[] {
+  return communesByDept("85");
+}
+
+/**
+ * Communes prébâties en SSG = Tier 1 (top des 4 dépts) ∪ communes prioritaires
+ * ∪ TOUTE la Vendée (85). La Vendée est couverte à 100 % (focus marché),
+ * les autres départements restant en Tier 1 + ISR. Dédoublonné par code INSEE.
+ */
 export function ssgCommunes(): Commune[] {
   const map = new Map<string, Commune>();
-  for (const c of [...tier1(), ...priorityCommunes()]) map.set(c.code, c);
+  for (const c of [...tier1(), ...priorityCommunes(), ...allVendee()]) map.set(c.code, c);
   return [...map.values()];
 }
 

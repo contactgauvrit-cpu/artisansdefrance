@@ -77,26 +77,33 @@ export function Zone() {
         <div>
           <span className="eyebrow">Zone d&apos;intervention</span>
           <h2 style={{ fontSize: "clamp(30px,4.4vw,46px)", margin: "16px 0 22px" }}>
-            La Vienne <em>et les départements voisins</em>
+            La Vendée <em>et tout le secteur</em>
           </h2>
           <p className="lede" style={{ marginBottom: "26px" }}>
-            Basés en Vienne, nos artisans interviennent dans tout le département (86) ainsi
-            qu&apos;en Deux-Sèvres (79), Maine-et-Loire (49) et Vendée (85).
+            Nous intervenons en Vendée (85) et sur tout le secteur — Deux-Sèvres (79),
+            Maine-et-Loire (49) et Vienne (86) — au plus près de chez vous, pour tous vos travaux.
           </p>
           <div className="dept-grid reveal" id="deptGrid">
             {DEPARTEMENTS.map((d) => {
               const slug = deptByCode(d.num)?.slug;
+              const star = d.num === "85";
               const inner = (
                 <>
                   <div className="dept-head">
                     <span className="dept-num">{d.num}</span>
                     <span className="dept-nom">{d.nom}</span>
+                    {star && <span className="dept-badge">★ Zone phare</span>}
                   </div>
                   <p className="dept-villes">{d.villes.join(" · ")}</p>
                 </>
               );
               return slug ? (
-                <Link className="dept" href={`/zone/${slug}`} key={d.num} style={{ display: "block" }}>
+                <Link
+                  className={`dept${star ? " dept--star" : ""}`}
+                  href={`/zone/${slug}`}
+                  key={d.num}
+                  style={{ display: "block" }}
+                >
                   {inner}
                 </Link>
               ) : (
