@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { LocalCTA } from "@/components/LocalCTA";
 import { ServiceTiles } from "@/components/ServiceTiles";
+import { AirtonGamme } from "@/components/AirtonGamme";
 import { SERVICES } from "@/lib/content";
 import { serviceBySlug, serviceMeta } from "@/lib/services-meta";
 import { buildServiceHub } from "@/lib/page-content";
@@ -105,6 +106,8 @@ export default async function ServiceHubPage({ params }: Props) {
             )}
           </section>
         ) : null}
+
+        {slug === "climatisation" && <AirtonGamme />}
 
         <section className="wrap section-tight">
           <h2 className="block-title">

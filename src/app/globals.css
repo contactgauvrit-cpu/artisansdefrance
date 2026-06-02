@@ -264,6 +264,24 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
 .rcard .img-slot img{transition:transform .55s cubic-bezier(.22,.61,.36,1)}
 .rcard:hover .img-slot img{transform:scale(1.05)}
 
+/* ===== Bloc gamme Airton (hub climatisation) ===== */
+.airton-lead{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin:10px 0 4px}
+.airton-lead-media{position:relative;aspect-ratio:4/3.1;border-radius:var(--radius);overflow:hidden;border:1px solid var(--rule)}
+.airton-lead-text{margin:0}
+.airton-features{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:9px}
+.airton-features li{position:relative;padding-left:20px;font-size:15px;line-height:1.55}
+.airton-features li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:var(--copper)}
+.airton-sub{font-family:var(--serif);font-size:23px;text-align:center;margin:34px 0 18px}
+.airton-range{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.airton-card{border:1px solid var(--rule);border-radius:var(--radius);background:var(--white);padding:14px 14px 16px;text-align:center}
+.airton-card-media{position:relative;aspect-ratio:4/3;margin-bottom:10px}
+.airton-card h4{font-family:var(--serif);font-size:18px;margin:0 0 3px}
+.airton-pieces{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--copper-deep)}
+.airton-card p{font-size:13.5px;color:var(--gray);margin:9px 0 0;line-height:1.5}
+.airton-strip{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+.airton-strip-img{position:relative;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;border:1px solid var(--rule)}
+@media(max-width:880px){.airton-lead{grid-template-columns:1fr}.airton-range{grid-template-columns:repeat(2,1fr)}.airton-strip{grid-template-columns:1fr}}
+
 /* ===== Placeholder image (en attente des vraies photos client) ===== */
 .img-slot{position:relative;display:flex;align-items:center;justify-content:center;background:var(--copper-wash);color:var(--copper-deep);overflow:hidden}
 .img-slot .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.8;padding:0 16px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;line-height:1.5}
