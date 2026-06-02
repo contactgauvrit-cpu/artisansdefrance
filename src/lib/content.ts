@@ -9,8 +9,8 @@ export const SITE = {
   name: "Artisans de France",
   baseline: "Création • Rénovation",
   // ⚠️ PLACEHOLDERS — à remplacer
-  phoneDisplay: "05 49 00 00 00",
-  phoneHref: "+33549000000",
+  phoneDisplay: "07 49 98 86 95",
+  phoneHref: "+33749988695",
   email: "contact@artisansdefrancetravaux.fr",
   siren: "000 000 000",
   url: "https://www.artisansdefrancetravaux.fr",
@@ -90,7 +90,7 @@ export const PROJECT_TYPES = [
 export const HOME_FAQ: { q: string; a: string }[] = [
   {
     q: "Intervenez-vous en urgence pour une fuite ou une panne ?",
-    a: "Oui. Pour les dépannages de plomberie et d'électricité, nous intervenons en urgence en Vienne (86) et aux alentours, généralement dans la journée. Appelez-nous au 05 49 00 00 00.",
+    a: "Oui. Pour les dépannages de plomberie et d'électricité, nous intervenons en urgence en Vienne (86) et aux alentours, généralement dans la journée. Appelez-nous au 07 49 98 86 95.",
   },
   {
     q: "Le devis est-il vraiment gratuit et sans engagement ?",

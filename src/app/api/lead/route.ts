@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
+import { sendLeadEmail } from "@/lib/email";
 
 type Lead = {
   nom?: string;
@@ -11,8 +12,8 @@ type Lead = {
 
 /**
  * Réception des demandes de devis du formulaire.
- * Si Supabase est configuré (env) → insertion dans la table `leads`.
- * Sinon → log serveur (le formulaire reste fonctionnel).
+ * 1) validation 2) insertion Supabase (si configuré) 3) notification e-mail Brevo
+ * (si configuré). L'échec d'e-mail ne fait pas échouer le formulaire.
  */
 export async function POST(req: Request) {
   let body: Lead;
@@ -35,6 +36,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 422 });
   }
 
+  // 2) Persistance Supabase
   const supabase = getSupabase();
   if (supabase) {
     const { error } = await supabase
@@ -52,6 +54,13 @@ export async function POST(req: Request) {
       type,
       message: message.slice(0, 200),
     });
+  }
+
+  // 3) Notification e-mail (Brevo) — ne bloque pas le succès si échec
+  try {
+    await sendLeadEmail({ nom, tel, email, type, message });
+  } catch (e) {
+    console.error("[lead] erreur e-mail:", (e as Error).message);
   }
 
   return NextResponse.json({ ok: true });
