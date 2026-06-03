@@ -26,7 +26,7 @@ export default async function Dashboard() {
     ((
       await db
         .from("documents")
-        .select("id,type,numero,statut,total,created_at,client_snapshot")
+        .select("id,type,numero,statut,total,created_at,client_snapshot,devis_source_id")
         .order("created_at", { ascending: false })
         .limit(300)
     ).data as DocRow[]) ?? [];
@@ -36,6 +36,13 @@ export default async function Dashboard() {
   const devisSignes = docs.filter((d) => d.type === "devis" && d.statut === "signe");
   const facturesAEncaisser = docs.filter((d) => d.type === "facture" && d.statut === "envoye");
   const facturesEncaissees = docs.filter((d) => d.type === "facture" && d.statut === "paye");
+  // devis signés non encore convertis en facture (= réellement à facturer)
+  const dejaFactures = new Set(
+    docs
+      .filter((d) => d.type === "facture" && d.statut !== "annule" && d.devis_source_id)
+      .map((d) => d.devis_source_id)
+  );
+  const devisAFacturer = devisSignes.filter((d) => !dejaFactures.has(d.id));
 
   return (
     <>
@@ -55,7 +62,7 @@ export default async function Dashboard() {
         <div className="admin-stat">
           <span className="admin-stat-n">{devisSignes.length}</span>
           <span className="admin-stat-l">Devis signés</span>
-          <span className="admin-stat-sub">{eur(sum(devisSignes))} à facturer</span>
+          <span className="admin-stat-sub">{eur(sum(devisAFacturer))} à facturer</span>
         </div>
         <div className="admin-stat admin-stat-warn">
           <span className="admin-stat-n">{eur(sum(facturesAEncaisser))}</span>

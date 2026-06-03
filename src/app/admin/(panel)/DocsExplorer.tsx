@@ -12,6 +12,7 @@ export type DocRow = {
   total: number;
   created_at: string;
   client_snapshot: ClientSnapshot;
+  devis_source_id?: string | null;
 };
 
 const clientName = (c: ClientSnapshot = {}) =>
