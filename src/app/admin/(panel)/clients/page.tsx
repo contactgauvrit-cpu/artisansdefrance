@@ -46,7 +46,7 @@ export default async function Clients() {
             <span>Ville</span>
           </div>
           {clients.map((c) => (
-            <div key={c.id} className="admin-tr admin-tr-3">
+            <Link key={c.id} href={`/admin/clients/${c.id}`} className="admin-tr admin-tr-3 admin-row">
               <span>
                 <strong>
                   {c.est_entreprise && c.raison_sociale
@@ -56,7 +56,7 @@ export default async function Clients() {
               </span>
               <span className="muted">{[c.tel, c.email].filter(Boolean).join(" · ") || "—"}</span>
               <span className="muted">{c.ville || "—"}</span>
-            </div>
+            </Link>
           ))}
         </div>
       )}
