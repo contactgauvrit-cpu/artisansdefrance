@@ -118,3 +118,76 @@ export async function sendClientAck(lead: LeadEmail): Promise<SendResult> {
     htmlContent: html,
   });
 }
+
+/* ============================================================
+   ADMIN — envoi de devis/facture au client + notif signature
+   ============================================================ */
+
+/** Envoie le devis/facture au client avec un lien de consultation/signature. */
+export async function sendDocumentEmail(opts: {
+  to: string;
+  clientName: string;
+  type: "devis" | "facture";
+  numero: string;
+  total: string;
+  link: string;
+}): Promise<SendResult> {
+  const senderEmail = process.env.BREVO_SENDER_EMAIL;
+  if (!senderEmail) return { sent: false, status: 0, detail: "env BREVO_SENDER_EMAIL manquant" };
+  const estDevis = opts.type === "devis";
+  const prenom = esc(opts.clientName.split(/\s+/)[0] || opts.clientName);
+  const cta = estDevis ? "Consulter et signer mon devis" : "Consulter ma facture";
+  const html = `
+    <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:auto;color:#2B2B2E">
+      <p style="color:#B87333;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px">Artisans de France</p>
+      <h2 style="margin:0 0 14px;font-size:21px;line-height:1.3">Bonjour ${prenom}, voici votre ${estDevis ? "devis" : "facture"}</h2>
+      <p style="font-size:15px;line-height:1.65;margin:0 0 14px">
+        Vous trouverez ci-dessous votre <strong>${estDevis ? "devis" : "facture"} n° ${esc(opts.numero)}</strong>
+        d'un montant de <strong>${esc(opts.total)}</strong>.
+        ${estDevis ? "Pour l'accepter, il vous suffit de le consulter et de le signer en ligne (c'est immédiat)." : ""}
+      </p>
+      <p style="margin:18px 0">
+        <a href="${esc(opts.link)}" style="background:#B87333;color:#fff;text-decoration:none;font-weight:600;padding:13px 22px;border-radius:10px;display:inline-block">${cta}</a>
+      </p>
+      <p style="font-size:13px;color:#9AA0A8;margin:14px 0 0">Ou copiez ce lien : ${esc(opts.link)}</p>
+      <hr style="border:none;border-top:1px solid #E7E2D9;margin:22px 0 12px" />
+      <p style="font-size:12px;color:#9AA0A8;line-height:1.6;margin:0">
+        Artisans de France · ${SITE.phoneDisplay} · ${SITE.email} · artisansdefrancetravaux.fr
+      </p>
+    </div>`;
+  return postBrevo({
+    sender: { name: "Artisans de France", email: senderEmail },
+    to: [{ email: opts.to, name: opts.clientName }],
+    replyTo: { email: SITE.email, name: "Artisans de France" },
+    subject: `Votre ${estDevis ? "devis" : "facture"} n° ${opts.numero} — Artisans de France`,
+    htmlContent: html,
+  });
+}
+
+/** Notifie l'artisan qu'un devis a été signé. */
+export async function sendSignatureNotif(opts: {
+  numero: string;
+  signataire: string;
+  total: string;
+  when: string;
+}): Promise<SendResult> {
+  const senderEmail = process.env.BREVO_SENDER_EMAIL;
+  const to = process.env.LEAD_NOTIFY_EMAIL || "contact.gauvrit@gmail.com";
+  if (!senderEmail) return { sent: false, status: 0, detail: "env BREVO_SENDER_EMAIL manquant" };
+  const html = `
+    <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:auto;color:#2B2B2E">
+      <h2 style="margin:0 0 6px">✅ Devis signé</h2>
+      <p style="color:#B87333;font-size:13px;margin:0 0 16px">Artisans de France — Admin</p>
+      <p style="font-size:15px;line-height:1.6">
+        Le devis <strong>n° ${esc(opts.numero)}</strong> (${esc(opts.total)}) a été
+        <strong>signé</strong> par ${esc(opts.signataire)} le ${esc(opts.when)}.
+      </p>
+      <p style="font-size:13px;color:#9AA0A8">Retrouve le détail (acompte, signature) dans ton espace admin.</p>
+    </div>`;
+  return postBrevo({
+    sender: { name: "Artisans de France — Site", email: senderEmail },
+    to: [{ email: to }],
+    subject: `✅ Devis n° ${opts.numero} signé par ${opts.signataire}`,
+    htmlContent: html,
+  });
+}
