@@ -56,10 +56,7 @@ export function DocumentView({ doc }: { doc: PublicDoc }) {
         </div>
       </header>
 
-      <div className="docview-em muted">
-        {EMETTEUR.forme} — {EMETTEUR.dirigeant} · {EMETTEUR.adresse}, {EMETTEUR.cp} {EMETTEUR.ville} · SIREN{" "}
-        {EMETTEUR.siren} · {EMETTEUR.tel}
-      </div>
+      <div className="docview-em muted">{EMETTEUR.forme}</div>
 
       <section className="docview-client">
         <h2>Client</h2>

@@ -115,12 +115,10 @@ export async function buildDocumentPdf(doc: DocForPdf): Promise<Uint8Array> {
     right(`Valable jusqu'au ${dateFr(doc.date_validite)}`, width - M, y - 50, 9, reg, GRAY);
 
   y -= 70;
-  // émetteur (petites lignes)
-  text(`${EMETTEUR.forme} — ${EMETTEUR.dirigeant}`, M, y, 8.5, reg, GRAY);
-  text(`${EMETTEUR.adresse}, ${EMETTEUR.cp} ${EMETTEUR.ville}`, M, y - 11, 8.5, reg, GRAY);
-  text(`SIREN ${EMETTEUR.siren} · ${EMETTEUR.tel} · ${EMETTEUR.email}`, M, y - 22, 8.5, reg, GRAY);
+  // émetteur : forme juridique seule (le détail légal complet reste en pied de page)
+  text(EMETTEUR.forme, M, y, 8.5, reg, GRAY);
 
-  y -= 44;
+  y -= 18;
   page.drawLine({ start: { x: M, y }, end: { x: width - M, y }, thickness: 1, color: RULE });
   y -= 22;
 
