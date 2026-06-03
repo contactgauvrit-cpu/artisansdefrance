@@ -23,6 +23,7 @@ function winAnsiSafe(input: unknown): string {
     else if (c === 0x2014 || c === 0x2013) out += "-";
     else if (c === 0x2018 || c === 0x2019) out += "'";
     else if (c === 0x201c || c === 0x201d) out += '"';
+    else if (c === 0x2022) out += "·";
     else if (c <= 0xff || c === 0x20ac || c === 0x0152 || c === 0x0153) out += ch;
     else out += " ";
   }
@@ -149,24 +150,24 @@ export async function buildDocumentPdf(doc: DocForPdf): Promise<Uint8Array> {
 
   // ---- Tableau des lignes ----
   const colDesc = M;
-  const colQte = width - M - 200;
-  const colPu = width - M - 110;
-  const colTot = width - M;
+  const qteR = M + 318; // bord droit colonne Qté
+  const puR = M + 410; // bord droit colonne P.U.
+  const totR = width - M - 2; // bord droit colonne Total
   page.drawRectangle({ x: M, y: y - 4, width: width - 2 * M, height: 20, color: WASH });
   text("Désignation", colDesc + 6, y + 1, 9, bold);
-  right("Qté", colQte + 30, y + 1, 9, bold);
-  right("P.U.", colPu + 60, y + 1, 9, bold);
-  right("Total", colTot - 6, y + 1, 9, bold);
+  right("Qté", qteR, y + 1, 9, bold);
+  right("P.U.", puR, y + 1, 9, bold);
+  right("Total", totR, y + 1, 9, bold);
   y -= 22;
 
   for (const l of doc.lignes) {
     const desc = san(l.designation);
-    // wrap simple de la désignation (~62 car/ligne)
-    const lines = wrap(desc, 62);
+    // wrap simple de la désignation (largeur de la colonne)
+    const lines = wrap(desc, 46);
     for (let i = 0; i < lines.length; i++) text(lines[i], colDesc + 6, y - i * 11, 9.5);
-    right(String(l.quantite), colQte + 30, y, 9.5, reg, GRAY);
-    right(eur(l.prix_unitaire), colPu + 60, y, 9.5, reg, GRAY);
-    right(eur(ligneTotal(l)), colTot - 6, y, 9.5, reg);
+    right(String(l.quantite), qteR, y, 9.5, reg, GRAY);
+    right(eur(l.prix_unitaire), puR, y, 9.5, reg, GRAY);
+    right(eur(ligneTotal(l)), totR, y, 9.5, reg);
     y -= 11 * Math.max(1, lines.length) + 8;
     page.drawLine({ start: { x: M, y: y + 4 }, end: { x: width - M, y: y + 4 }, thickness: 0.5, color: RULE });
   }
@@ -174,14 +175,14 @@ export async function buildDocumentPdf(doc: DocForPdf): Promise<Uint8Array> {
   // ---- Totaux ----
   y -= 10;
   const total = doc.total ?? docTotal(doc.lignes);
-  right("Total (net de TVA)", colPu + 60, y, 10, bold);
-  right(eur(total), colTot - 6, y, 11, bold, COPPER);
+  right("Total (net de TVA)", puR, y, 10, bold);
+  right(eur(total), totR, y, 11, bold, COPPER);
   y -= 14;
-  right(TVA_MENTION, colTot - 6, y, 8, reg, GRAY);
+  right(TVA_MENTION, totR, y, 8, reg, GRAY);
   y -= 18;
   if (doc.type === "devis" && doc.acompte_pct > 0) {
     const ac = Math.round(total * doc.acompte_pct) / 100;
-    right(`Acompte ${doc.acompte_pct}% à la commande : ${eur(ac)}`, colTot - 6, y, 9.5, bold, INK);
+    right(`Acompte ${doc.acompte_pct}% à la commande : ${eur(ac)}`, totR, y, 9.5, bold, INK);
     y -= 16;
   }
 
