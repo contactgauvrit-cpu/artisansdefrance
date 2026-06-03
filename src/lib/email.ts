@@ -14,6 +14,22 @@ const esc = (s: string) =>
   s.replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[c] ?? c);
 
 /**
+ * En-tête de marque (coq + nom) pour les e-mails. Construit en table avec
+ * vertical-align pour rester aligné dans tous les clients (Gmail, Apple Mail,
+ * Outlook). Le logo est servi en absolu depuis le site (chargé à l'ouverture).
+ */
+const brandHeader = () => `
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 20px"><tr>
+      <td style="padding-right:11px;vertical-align:middle">
+        <img src="${SITE.url}/assets/coq-metal.png" alt="Artisans de France" width="42" height="46" style="display:block;border:0;width:42px;height:auto" />
+      </td>
+      <td style="vertical-align:middle">
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:19px;font-weight:700;color:#2B2B2E;line-height:1.1">Artisans de France</div>
+        <div style="font-family:Inter,Arial,sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#B87333;margin-top:3px">Création · Rénovation</div>
+      </td>
+    </tr></table>`;
+
+/**
  * Envoi transactionnel via l'API Brevo. Ne lève jamais : renvoie un statut.
  * Env requis : BREVO_API_KEY (+ BREVO_SENDER_EMAIL fourni par l'appelant).
  */
@@ -51,8 +67,8 @@ export async function sendLeadEmail(lead: LeadEmail): Promise<SendResult> {
 
   const html = `
     <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:auto">
-      <h2 style="color:#2B2B2E;margin:0 0 4px">Nouvelle demande de devis</h2>
-      <p style="color:#B87333;font-size:13px;letter-spacing:.04em;margin:0 0 16px">Artisans de France</p>
+      ${brandHeader()}
+      <h2 style="color:#2B2B2E;margin:0 0 14px">Nouvelle demande de devis</h2>
       <table style="font-size:15px;border-collapse:collapse;width:100%">
         <tr><td style="padding:6px 14px 6px 0;color:#6B7280;width:120px">Nom</td><td><strong>${esc(lead.nom)}</strong></td></tr>
         <tr><td style="padding:6px 14px 6px 0;color:#6B7280">Téléphone</td><td><a href="tel:${esc(lead.tel)}" style="color:#9A5C26">${esc(lead.tel)}</a></td></tr>
@@ -85,7 +101,7 @@ export async function sendClientAck(lead: LeadEmail): Promise<SendResult> {
   const prenom = esc(lead.nom.split(/\s+/)[0] || lead.nom);
   const html = `
     <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:auto;color:#2B2B2E">
-      <p style="color:#B87333;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px">Artisans de France</p>
+      ${brandHeader()}
       <h2 style="margin:0 0 16px;font-size:21px;line-height:1.3">Bonjour ${prenom}, votre demande est bien arrivée</h2>
       <p style="font-size:15px;line-height:1.65;margin:0 0 14px">
         Merci de votre confiance. Nous avons bien reçu votre demande de devis et nous revenons vers
@@ -139,7 +155,7 @@ export async function sendDocumentEmail(opts: {
   const cta = estDevis ? "Consulter et signer mon devis" : "Consulter ma facture";
   const html = `
     <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:auto;color:#2B2B2E">
-      <p style="color:#B87333;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px">Artisans de France</p>
+      ${brandHeader()}
       <h2 style="margin:0 0 14px;font-size:21px;line-height:1.3">Bonjour ${prenom}, voici votre ${estDevis ? "devis" : "facture"}</h2>
       <p style="font-size:15px;line-height:1.65;margin:0 0 14px">
         Vous trouverez ci-dessous votre <strong>${estDevis ? "devis" : "facture"} n° ${esc(opts.numero)}</strong>
@@ -176,8 +192,8 @@ export async function sendSignatureNotif(opts: {
   if (!senderEmail) return { sent: false, status: 0, detail: "env BREVO_SENDER_EMAIL manquant" };
   const html = `
     <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:auto;color:#2B2B2E">
-      <h2 style="margin:0 0 6px">✅ Devis signé</h2>
-      <p style="color:#B87333;font-size:13px;margin:0 0 16px">Artisans de France — Admin</p>
+      ${brandHeader()}
+      <h2 style="margin:0 0 14px">✅ Devis signé</h2>
       <p style="font-size:15px;line-height:1.6">
         Le devis <strong>n° ${esc(opts.numero)}</strong> (${esc(opts.total)}) a été
         <strong>signé</strong> par ${esc(opts.signataire)} le ${esc(opts.when)}.
