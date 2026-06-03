@@ -321,6 +321,14 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
 .admin-stat{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:3px}
 .admin-stat-n{font-family:var(--serif);font-size:22px;color:var(--copper-deep)}
 .admin-stat-l{font-size:12px;color:var(--gray)}
+.admin-stat-sub{font-size:11px;color:var(--gray);opacity:.85}
+.admin-stat-warn .admin-stat-n{color:#b07a1e}
+.admin-stat-ok .admin-stat-n{color:#2f7d4f}
+.admin-explorer{margin-top:2px}
+.admin-search{width:100%;box-sizing:border-box;font-family:inherit;font-size:15px;padding:12px 16px;margin-bottom:14px;border:1px solid var(--rule);border-radius:var(--radius);background:var(--white);color:var(--anthracite)}
+.admin-search::placeholder{color:var(--gray)}
+.admin-search:focus{outline:none;border-color:var(--copper-deep);box-shadow:0 0 0 3px var(--copper-wash)}
+.admin-explorer-count{padding:10px 14px;font-size:12px;border-top:1px solid var(--rule-soft)}
 .admin-card{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);padding:20px 22px;margin-bottom:16px}
 .admin-card legend,.admin-sub{font-family:var(--serif);font-size:18px;color:var(--anthracite);padding:0;margin:0 0 10px}
 .admin-table{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}

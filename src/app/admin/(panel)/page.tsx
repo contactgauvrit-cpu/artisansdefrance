@@ -1,37 +1,14 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getAdminUser, getSupabaseService } from "@/lib/supabase";
-import { eur, dateFr, STATUT_LABEL, type ClientSnapshot, type DocStatut } from "@/lib/admin-content";
+import { eur } from "@/lib/admin-content";
+import { DocsExplorer, type DocRow } from "./DocsExplorer";
 
 export const dynamic = "force-dynamic";
-
-type Row = {
-  id: string;
-  type: "devis" | "facture";
-  numero: string;
-  statut: DocStatut;
-  total: number;
-  acompte_pct: number;
-  created_at: string;
-  client_snapshot: ClientSnapshot;
-  signe_at: string | null;
-};
-
-const clientName = (c: ClientSnapshot = {}) =>
-  c.est_entreprise && c.raison_sociale ? c.raison_sociale : `${c.prenom ?? ""} ${c.nom ?? ""}`.trim() || "—";
 
 export default async function Dashboard() {
   if (!(await getAdminUser())) redirect("/admin/login");
   const db = getSupabaseService();
-  const docs: Row[] = db
-    ? ((
-        await db
-          .from("documents")
-          .select("id,type,numero,statut,total,acompte_pct,created_at,client_snapshot,signe_at")
-          .order("created_at", { ascending: false })
-          .limit(150)
-      ).data as Row[]) ?? []
-    : [];
 
   if (!db) {
     return (
@@ -45,9 +22,20 @@ export default async function Dashboard() {
     );
   }
 
-  const signes = docs.filter((d) => d.type === "devis" && d.statut === "signe");
-  const caSigne = signes.reduce((s, d) => s + Number(d.total), 0);
-  const enAttente = docs.filter((d) => d.statut === "envoye").length;
+  const docs: DocRow[] =
+    ((
+      await db
+        .from("documents")
+        .select("id,type,numero,statut,total,created_at,client_snapshot")
+        .order("created_at", { ascending: false })
+        .limit(300)
+    ).data as DocRow[]) ?? [];
+
+  const sum = (arr: DocRow[]) => arr.reduce((s, d) => s + (Number(d.total) || 0), 0);
+  const devisASigner = docs.filter((d) => d.type === "devis" && d.statut === "envoye");
+  const devisSignes = docs.filter((d) => d.type === "devis" && d.statut === "signe");
+  const facturesAEncaisser = docs.filter((d) => d.type === "facture" && d.statut === "envoye");
+  const facturesEncaissees = docs.filter((d) => d.type === "facture" && d.statut === "paye");
 
   return (
     <>
@@ -60,55 +48,34 @@ export default async function Dashboard() {
 
       <div className="admin-stats">
         <div className="admin-stat">
-          <span className="admin-stat-n">{docs.length}</span>
-          <span className="admin-stat-l">Documents</span>
-        </div>
-        <div className="admin-stat">
-          <span className="admin-stat-n">{signes.length}</span>
-          <span className="admin-stat-l">Devis signés</span>
-        </div>
-        <div className="admin-stat">
-          <span className="admin-stat-n">{enAttente}</span>
+          <span className="admin-stat-n">{devisASigner.length}</span>
           <span className="admin-stat-l">En attente de signature</span>
+          <span className="admin-stat-sub">{eur(sum(devisASigner))} · devis envoyés</span>
         </div>
         <div className="admin-stat">
-          <span className="admin-stat-n">{eur(caSigne)}</span>
-          <span className="admin-stat-l">Signé (devis)</span>
+          <span className="admin-stat-n">{devisSignes.length}</span>
+          <span className="admin-stat-l">Devis signés</span>
+          <span className="admin-stat-sub">{eur(sum(devisSignes))} à facturer</span>
+        </div>
+        <div className="admin-stat admin-stat-warn">
+          <span className="admin-stat-n">{eur(sum(facturesAEncaisser))}</span>
+          <span className="admin-stat-l">En attente de paiement</span>
+          <span className="admin-stat-sub">
+            {facturesAEncaisser.length} facture{facturesAEncaisser.length > 1 ? "s" : ""} envoyée
+            {facturesAEncaisser.length > 1 ? "s" : ""}
+          </span>
+        </div>
+        <div className="admin-stat admin-stat-ok">
+          <span className="admin-stat-n">{eur(sum(facturesEncaissees))}</span>
+          <span className="admin-stat-l">Encaissé</span>
+          <span className="admin-stat-sub">
+            {facturesEncaissees.length} facture{facturesEncaissees.length > 1 ? "s" : ""} payée
+            {facturesEncaissees.length > 1 ? "s" : ""}
+          </span>
         </div>
       </div>
 
-      {docs.length === 0 ? (
-        <div className="admin-card">
-          <p className="muted">Aucun document pour l'instant.</p>
-          <Link href="/admin/documents/nouveau" className="btn btn-primary admin-btn-sm">
-            Créer ton premier devis
-          </Link>
-        </div>
-      ) : (
-        <div className="admin-table">
-          <div className="admin-tr admin-th">
-            <span>Document</span>
-            <span>Client</span>
-            <span>Date</span>
-            <span>Montant</span>
-            <span>Statut</span>
-          </div>
-          {docs.map((d) => (
-            <Link key={d.id} href={`/admin/documents/${d.id}`} className="admin-tr admin-row">
-              <span>
-                <em className={`admin-type admin-type-${d.type}`}>{d.type === "devis" ? "Devis" : "Facture"}</em>{" "}
-                {d.numero}
-              </span>
-              <span>{clientName(d.client_snapshot)}</span>
-              <span className="muted">{dateFr(d.created_at)}</span>
-              <span>{eur(d.total)}</span>
-              <span>
-                <em className={`admin-badge admin-badge-${d.statut}`}>{STATUT_LABEL[d.statut]}</em>
-              </span>
-            </Link>
-          ))}
-        </div>
-      )}
+      <DocsExplorer docs={docs} />
     </>
   );
 }
