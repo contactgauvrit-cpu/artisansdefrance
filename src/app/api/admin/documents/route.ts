@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAdminUser, getSupabaseService } from "@/lib/supabase";
-import { docTotal, makeNumero, type Ligne, type ClientSnapshot, type DocType } from "@/lib/admin-content";
+import { docTotal, makeNumero, parseSeq, type Ligne, type ClientSnapshot, type DocType } from "@/lib/admin-content";
 
 export const dynamic = "force-dynamic";
 
@@ -59,12 +59,16 @@ export async function POST(req: Request) {
   // 2) Numéro chrono DEV/FAC-AAAA-NNNN
   const year = new Date().getFullYear();
   const prefix = type === "devis" ? "DEV" : "FAC";
-  const { count } = await db
+  // Numéro basé sur le PLUS GRAND existant (+1) — robuste aux suppressions (sinon collision d'unicité)
+  const { data: last } = await db
     .from("documents")
-    .select("*", { count: "exact", head: true })
+    .select("numero")
     .eq("type", type)
-    .like("numero", `${prefix}-${year}-%`);
-  const numero = makeNumero(type, year, count ?? 0);
+    .like("numero", `${prefix}-${year}-%`)
+    .order("numero", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  const numero = makeNumero(type, year, parseSeq(last?.numero));
 
   const total = docTotal(lignes);
   const validite =

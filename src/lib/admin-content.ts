@@ -67,6 +67,13 @@ export function makeNumero(type: DocType, year: number, count: number): string {
   return `${prefix}-${year}-${String(count + 1).padStart(4, "0")}`;
 }
 
+/** Extrait la séquence finale d'un numéro (DEV-2026-0007 -> 7). 0 si absent. */
+export function parseSeq(numero?: string | null): number {
+  if (!numero) return 0;
+  const m = /(\d+)$/.exec(numero);
+  return m ? parseInt(m[1], 10) : 0;
+}
+
 export const STATUT_LABEL: Record<DocStatut, string> = {
   brouillon: "Brouillon",
   envoye: "Envoyé",

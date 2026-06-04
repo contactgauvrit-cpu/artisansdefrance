@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAdminUser, getSupabaseService } from "@/lib/supabase";
-import { makeNumero, DEFAULT_CONDITIONS_FACTURE } from "@/lib/admin-content";
+import { makeNumero, parseSeq, DEFAULT_CONDITIONS_FACTURE } from "@/lib/admin-content";
 
 export const dynamic = "force-dynamic";
 
@@ -29,12 +29,15 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   }
   if (action === "convert" && doc.type === "devis") {
     const year = new Date().getFullYear();
-    const { count } = await db
+    const { data: last } = await db
       .from("documents")
-      .select("*", { count: "exact", head: true })
+      .select("numero")
       .eq("type", "facture")
-      .like("numero", `FAC-${year}-%`);
-    const numero = makeNumero("facture", year, count ?? 0);
+      .like("numero", `FAC-${year}-%`)
+      .order("numero", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    const numero = makeNumero("facture", year, parseSeq(last?.numero));
     const { data: fac, error } = await db
       .from("documents")
       .insert({
