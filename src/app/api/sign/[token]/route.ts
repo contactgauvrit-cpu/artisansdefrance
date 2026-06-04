@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSupabaseService } from "@/lib/supabase";
-import { sendSignatureNotif } from "@/lib/email";
+import { sendSignatureNotif, sendClientSignedCopy } from "@/lib/email";
+import { buildDocumentPdf, type DocForPdf } from "@/lib/pdf";
 import { eur, dateFr } from "@/lib/admin-content";
 
 export const dynamic = "force-dynamic";
@@ -54,5 +55,36 @@ export async function POST(req: Request, { params }: { params: Promise<{ token: 
   } catch {
     /* notif best-effort */
   }
+
+  // Remerciement au client + PDF du devis signé en pièce jointe (best-effort)
+  try {
+    const c = doc.client_snapshot ?? {};
+    const clientEmail: string | undefined = c.email;
+    if (clientEmail) {
+      const signedDoc = {
+        ...doc,
+        statut: "signe",
+        signe_at: when,
+        signataire_nom: b.signataire_nom ?? null,
+        signature_png: b.signature_png,
+      };
+      const bytes = await buildDocumentPdf(signedDoc as DocForPdf);
+      const pdfBase64 = Buffer.from(bytes).toString("base64");
+      const clientName =
+        (c.est_entreprise && c.raison_sociale
+          ? c.raison_sociale
+          : `${c.prenom ?? ""} ${c.nom ?? ""}`.trim()) || "client";
+      await sendClientSignedCopy({
+        to: clientEmail,
+        clientName,
+        numero: doc.numero,
+        total: eur(doc.total),
+        pdfBase64,
+      });
+    }
+  } catch {
+    /* copie client best-effort */
+  }
+
   return NextResponse.json({ ok: true });
 }

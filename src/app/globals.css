@@ -353,8 +353,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
 .admin-badge-paye{background:#d8efe0;color:#1f7a45}
 .admin-badge-refuse,.admin-badge-annule{background:#fbe3e3;color:#b3261e}
 /* formulaire */
-.admin-form label,.admin-card label{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--gray);margin-bottom:12px}
-.admin-form input,.admin-form select,.admin-form textarea,.admin-login-card input{font:inherit;font-size:15px;padding:10px 12px;border:1px solid var(--rule);border-radius:10px;background:#fff;color:var(--anthracite);width:100%}
+.admin-form label,.admin-card label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--gray);margin-bottom:14px}
+.admin-form input,.admin-form select,.admin-form textarea,.admin-login-card input{font:inherit;font-size:17px;line-height:1.5;padding:12px 14px;border:1px solid var(--rule);border-radius:10px;background:#fff;color:var(--anthracite);width:100%}
+.admin-form textarea{min-height:84px}
 .admin-check{flex-direction:row!important;align-items:center;gap:8px!important;font-size:14px!important;color:var(--anthracite)!important}
 .admin-check input{width:auto!important}
 .admin-grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}

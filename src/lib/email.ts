@@ -207,3 +207,45 @@ export async function sendSignatureNotif(opts: {
     htmlContent: html,
   });
 }
+
+/** Remerciement AU CLIENT après signature, avec le PDF du devis signé en pièce jointe. */
+export async function sendClientSignedCopy(opts: {
+  to: string;
+  clientName: string;
+  numero: string;
+  total: string;
+  pdfBase64: string;
+}): Promise<SendResult> {
+  const senderEmail = process.env.BREVO_SENDER_EMAIL;
+  if (!senderEmail) return { sent: false, status: 0, detail: "env BREVO_SENDER_EMAIL manquant" };
+  if (!opts.to) return { sent: false, status: 0, detail: "client sans e-mail" };
+  const prenom = esc(opts.clientName.split(/\s+/)[0] || opts.clientName);
+  const html = `
+    <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:auto;color:#2B2B2E">
+      ${brandHeader()}
+      <h2 style="margin:0 0 14px;font-size:21px;line-height:1.3">Merci ${prenom}, votre devis est signé ✅</h2>
+      <p style="font-size:15px;line-height:1.65;margin:0 0 14px">
+        Nous vous confirmons la bonne signature de votre <strong>devis n° ${esc(opts.numero)}</strong>
+        d'un montant de <strong>${esc(opts.total)}</strong>. Vous le trouverez <strong>signé, en pièce
+        jointe</strong> (PDF) — à conserver.
+      </p>
+      <p style="font-size:15px;line-height:1.65;margin:0 0 14px">
+        Nous revenons vers vous pour planifier l'intervention. Pour lancer les travaux, l'acompte peut
+        être réglé par virement (coordonnées bancaires en bas du devis).
+      </p>
+      <p style="font-size:15px;line-height:1.65;margin:0 0 2px">À très vite,</p>
+      <p style="font-size:15px;line-height:1.65;margin:0">Willy — <strong>Artisans de France</strong></p>
+      <hr style="border:none;border-top:1px solid #E7E2D9;margin:22px 0 12px" />
+      <p style="font-size:12px;color:#9AA0A8;line-height:1.6;margin:0">
+        ${SITE.phoneDisplay} · ${SITE.email} · artisansdefrancetravaux.fr
+      </p>
+    </div>`;
+  return postBrevo({
+    sender: { name: "Artisans de France", email: senderEmail },
+    to: [{ email: opts.to, name: opts.clientName }],
+    replyTo: { email: SITE.email, name: "Artisans de France" },
+    subject: `Merci — votre devis n° ${opts.numero} est signé`,
+    htmlContent: html,
+    attachment: [{ content: opts.pdfBase64, name: `Devis-${opts.numero}-signe.pdf` }],
+  });
+}
