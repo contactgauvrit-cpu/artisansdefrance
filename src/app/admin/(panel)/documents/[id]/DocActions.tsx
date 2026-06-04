@@ -39,7 +39,8 @@ export function DocActions({
     router.refresh();
   }
 
-  async function action(a: "convert" | "paye" | "annule") {
+  async function action(a: "convert" | "paye" | "annule" | "supprimer") {
+    if (a === "supprimer" && !window.confirm("Supprimer définitivement ce document ? Action irréversible.")) return;
     setBusy(a);
     setMsg("");
     const r = await fetch(`/api/admin/documents/${id}/action`, {
@@ -51,6 +52,10 @@ export function DocActions({
     setBusy("");
     if (a === "convert" && d.id) {
       router.push(`/admin/documents/${d.id}`);
+      return;
+    }
+    if (a === "supprimer" && d.ok) {
+      router.push("/admin");
       return;
     }
     router.refresh();
@@ -92,6 +97,14 @@ export function DocActions({
           Marquer payé
         </button>
       )}
+      <button
+        className="btn btn-ghost admin-btn-sm admin-del-doc"
+        onClick={() => action("supprimer")}
+        disabled={!!busy}
+        type="button"
+      >
+        {busy === "supprimer" ? "…" : "Supprimer"}
+      </button>
       {msg && <span className="admin-msg">{msg}</span>}
       </div>
     </>

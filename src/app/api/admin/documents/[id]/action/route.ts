@@ -22,6 +22,11 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
     await db.from("documents").update({ statut: "annule" }).eq("id", id);
     return NextResponse.json({ ok: true });
   }
+  if (action === "supprimer") {
+    const { error } = await db.from("documents").delete().eq("id", id);
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ ok: true, deleted: true });
+  }
   if (action === "convert" && doc.type === "devis") {
     const year = new Date().getFullYear();
     const { count } = await db
