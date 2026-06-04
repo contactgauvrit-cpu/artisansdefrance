@@ -74,7 +74,7 @@ async function fetchLogo(): Promise<Uint8Array | null> {
 
 export async function buildDocumentPdf(doc: DocForPdf): Promise<Uint8Array> {
   const pdf = await PDFDocument.create();
-  const page = pdf.addPage([595.28, 841.89]); // A4
+  let page = pdf.addPage([595.28, 841.89]); // A4
   const reg = await pdf.embedFont(StandardFonts.Helvetica);
   const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
   const { width, height } = page.getSize();
@@ -93,6 +93,14 @@ export async function buildDocumentPdf(doc: DocForPdf): Promise<Uint8Array> {
     const str = winAnsiSafe(s);
     const w = font.widthOfTextAtSize(str, size);
     page.drawText(str, { x: xRight - w, y: yy, size, font, color });
+  };
+  // Pagination : ajoute une page quand on approche du bas (le pied légal vit à y≈30).
+  const newPage = () => {
+    page = pdf.addPage([595.28, 841.89]);
+    y = height - M;
+  };
+  const ensure = (need: number) => {
+    if (y - need < 64) newPage();
   };
 
   // ---- En-tête : logo + émetteur (gauche), titre doc (droite) ----
@@ -173,18 +181,22 @@ export async function buildDocumentPdf(doc: DocForPdf): Promise<Uint8Array> {
   y -= 22;
 
   for (const l of doc.lignes) {
-    const desc = san(l.designation);
-    // wrap simple de la désignation (largeur de la colonne)
-    const lines = wrap(desc, 46);
-    for (let i = 0; i < lines.length; i++) text(lines[i], colDesc + 6, y - i * 11, 9.5);
+    // respecte les retours à la ligne saisis, puis renvoie à la ligne si trop long
+    const descLines = san(l.designation)
+      .split(/\r?\n/)
+      .flatMap((para) => wrap(para, 46));
+    const rowH = 11 * Math.max(1, descLines.length) + 8;
+    ensure(rowH + 6);
+    for (let i = 0; i < descLines.length; i++) text(descLines[i], colDesc + 6, y - i * 11, 9.5);
     right(String(l.quantite), qteR, y, 9.5, reg, GRAY);
     right(eur(l.prix_unitaire), puR, y, 9.5, reg, GRAY);
     right(eur(ligneTotal(l)), totR, y, 9.5, reg);
-    y -= 11 * Math.max(1, lines.length) + 8;
+    y -= rowH;
     page.drawLine({ start: { x: M, y: y + 4 }, end: { x: width - M, y: y + 4 }, thickness: 0.5, color: RULE });
   }
 
   // ---- Totaux ----
+  ensure(72);
   y -= 10;
   const total = doc.total ?? docTotal(doc.lignes);
   right("Total (net de TVA)", puR, y, 10, bold);
@@ -201,6 +213,7 @@ export async function buildDocumentPdf(doc: DocForPdf): Promise<Uint8Array> {
   // ---- Conditions + RIB ----
   y -= 8;
   if (doc.conditions) {
+    ensure(24 + wrap(san(doc.conditions), 95).length * 11);
     text("Conditions", M, y, 9, bold, COPPER);
     y -= 13;
     for (const ln of wrap(san(doc.conditions), 95)) {
@@ -210,6 +223,7 @@ export async function buildDocumentPdf(doc: DocForPdf): Promise<Uint8Array> {
     y -= 6;
   }
   if (RIB.iban) {
+    ensure(56);
     text("Règlement par virement", M, y, 9, bold, COPPER);
     y -= 13;
     text(`Titulaire : ${RIB.titulaire}`, M, y, 8.5, reg, GRAY);
@@ -220,6 +234,7 @@ export async function buildDocumentPdf(doc: DocForPdf): Promise<Uint8Array> {
 
   // ---- Signature (devis signé) ----
   if (doc.signe_at && doc.signature_png) {
+    ensure(92);
     try {
       const b64 = doc.signature_png.split(",").pop() ?? "";
       const sigImg = await pdf.embedPng(Uint8Array.from(Buffer.from(b64, "base64")));

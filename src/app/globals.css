@@ -363,8 +363,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
 .admin-seg button{padding:9px 22px;border:none;background:#fff;font:inherit;font-weight:600;color:var(--gray);cursor:pointer}
 .admin-seg button.on{background:var(--copper);color:#fff}
 .admin-lignes{display:flex;flex-direction:column;gap:8px;margin:6px 0 12px}
-.admin-ligne{display:grid;grid-template-columns:2.6fr .7fr .9fr .9fr 32px;gap:8px;align-items:center}
-.admin-ligne input{margin:0}
+.admin-ligne{display:grid;grid-template-columns:2.6fr .7fr .9fr .9fr 32px;gap:8px;align-items:start}
+.admin-ligne input,.admin-ligne textarea{margin:0}
+.admin-ligne textarea{resize:vertical;min-height:48px;line-height:1.4}
 .admin-ligne-h{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray)}
 .admin-ligne-tot{font-size:14px;text-align:right}
 .admin-del{background:none;border:none;color:#b3261e;font-size:16px;cursor:pointer}
@@ -400,6 +401,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
 .docview-table th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--gray);background:var(--copper-wash);padding:8px 10px}
 .docview-table th:nth-child(n+2),.docview-table td:nth-child(n+2){text-align:right;white-space:nowrap}
 .docview-table td{padding:9px 10px;border-bottom:1px solid var(--rule-soft);font-size:14px}
+.docview-table td:first-child{white-space:pre-wrap;line-height:1.5}
 .docview-total{display:flex;justify-content:space-between;font-size:16px;padding-top:10px}
 .docview-total strong{color:var(--copper-deep);font-size:20px}
 .docview-tva{font-size:12px;text-align:right}
@@ -430,6 +432,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
   .admin-th{display:none}
   .admin-grid2{grid-template-columns:1fr}
   .admin-ligne{grid-template-columns:1fr 1fr;gap:6px}
+  .admin-ligne textarea{grid-column:1 / -1}
   .admin-ligne-h{display:none}
   .docview{padding:22px 18px}
   .docview-meta{text-align:left}

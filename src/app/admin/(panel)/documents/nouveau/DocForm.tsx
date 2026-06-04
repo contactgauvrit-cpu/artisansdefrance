@@ -230,10 +230,11 @@ export function DocForm({ clients }: { clients: ClientLite[] }) {
           </div>
           {lignes.map((l, i) => (
             <div className="admin-ligne" key={i}>
-              <input
+              <textarea
                 value={l.designation}
                 onChange={(e) => setLigne(i, "designation", e.target.value)}
-                placeholder="Prestation / fourniture"
+                placeholder="Prestation / fourniture — appuie sur Entrée pour aller à la ligne et détailler"
+                rows={2}
               />
               <input
                 type="number"
