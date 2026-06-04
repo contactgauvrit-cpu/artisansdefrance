@@ -17,11 +17,16 @@ export function DocActions({
   const router = useRouter();
   const [busy, setBusy] = useState("");
   const [msg, setMsg] = useState("");
+  const [note, setNote] = useState("");
 
   async function send() {
     setBusy("send");
     setMsg("");
-    const r = await fetch(`/api/admin/documents/${id}/send`, { method: "POST" });
+    const r = await fetch(`/api/admin/documents/${id}/send`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ note }),
+    });
     const d = await r.json().catch(() => ({}));
     setBusy("");
     setMsg(
@@ -57,7 +62,17 @@ export function DocActions({
   }
 
   return (
-    <div className="admin-actions">
+    <>
+      <label className="admin-send-note">
+        Message d&apos;accompagnement dans l&apos;e-mail (optionnel)
+        <textarea
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          rows={3}
+          placeholder="Ex. Bonjour, suite à notre rendez-vous, voici votre devis. N'hésitez pas si vous avez des questions."
+        />
+      </label>
+      <div className="admin-actions">
       <a className="btn btn-ghost admin-btn-sm" href={`/api/admin/documents/${id}/pdf`} target="_blank" rel="noreferrer">
         Télécharger le PDF
       </a>
@@ -78,6 +93,7 @@ export function DocActions({
         </button>
       )}
       {msg && <span className="admin-msg">{msg}</span>}
-    </div>
+      </div>
+    </>
   );
 }

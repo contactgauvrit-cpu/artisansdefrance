@@ -147,6 +147,7 @@ export async function sendDocumentEmail(opts: {
   numero: string;
   total: string;
   link: string;
+  note?: string;
 }): Promise<SendResult> {
   const senderEmail = process.env.BREVO_SENDER_EMAIL;
   if (!senderEmail) return { sent: false, status: 0, detail: "env BREVO_SENDER_EMAIL manquant" };
@@ -157,6 +158,7 @@ export async function sendDocumentEmail(opts: {
     <div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:auto;color:#2B2B2E">
       ${brandHeader()}
       <h2 style="margin:0 0 14px;font-size:21px;line-height:1.3">Bonjour ${prenom}, voici votre ${estDevis ? "devis" : "facture"}</h2>
+      ${opts.note ? `<p style="font-size:15px;line-height:1.65;margin:0 0 14px">${esc(opts.note).replace(/\r?\n/g, "<br>")}</p>` : ""}
       <p style="font-size:15px;line-height:1.65;margin:0 0 14px">
         Vous trouverez ci-dessous votre <strong>${estDevis ? "devis" : "facture"} n° ${esc(opts.numero)}</strong>
         d'un montant de <strong>${esc(opts.total)}</strong>.

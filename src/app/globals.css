@@ -334,6 +334,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
 .admin-client-coord strong{color:var(--anthracite)}
 .admin-back{display:inline-block;font-size:13px;margin-bottom:10px;text-decoration:none}
 .admin-back:hover{color:var(--copper-deep)}
+.admin-send-note{display:block;max-width:580px;font-size:14px;color:var(--gray);margin:0 0 14px}
+.admin-send-note textarea{display:block;width:100%;box-sizing:border-box;margin-top:6px;font:inherit;font-size:16px;line-height:1.5;padding:11px 13px;border:1px solid var(--rule);border-radius:10px;background:#fff;color:var(--anthracite);resize:vertical;min-height:72px}
+.admin-send-note textarea:focus{outline:none;border-color:var(--copper-deep);box-shadow:0 0 0 3px var(--copper-wash)}
 .admin-card{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);padding:20px 22px;margin-bottom:16px}
 .admin-card legend,.admin-sub{font-family:var(--serif);font-size:18px;color:var(--anthracite);padding:0;margin:0 0 10px}
 .admin-table{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}

@@ -6,9 +6,11 @@ import { SITE } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
 
-export async function POST(_req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!(await getAdminUser())) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const { id } = await params;
+  const body = (await req.json().catch(() => ({}))) as { note?: string };
+  const note = typeof body.note === "string" && body.note.trim() ? body.note.trim() : undefined;
   const db = getSupabaseService();
   if (!db) return NextResponse.json({ error: "db" }, { status: 500 });
 
@@ -32,6 +34,7 @@ export async function POST(_req: Request, { params }: { params: Promise<{ id: st
     numero: doc.numero,
     total: eur(doc.total),
     link,
+    note,
   });
   if (res.sent && doc.statut === "brouillon") {
     await db.from("documents").update({ statut: "envoye", envoye_at: new Date().toISOString() }).eq("id", id);
