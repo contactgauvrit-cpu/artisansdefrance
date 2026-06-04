@@ -11,6 +11,7 @@ type Body = {
   save_client?: boolean;
   lignes: Ligne[];
   objet?: string;
+  message?: string;
   conditions?: string;
   acompte_pct?: number;
   date_validite?: string | null;
@@ -82,6 +83,7 @@ export async function POST(req: Request) {
       statut: "brouillon",
       date_validite: validite,
       objet: b.objet ?? null,
+      message: b.message ?? null,
       lignes,
       total,
       acompte_pct: typeof b.acompte_pct === "number" ? b.acompte_pct : 50,

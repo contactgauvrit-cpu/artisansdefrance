@@ -39,6 +39,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
         client_snapshot: doc.client_snapshot,
         statut: "brouillon",
         objet: doc.objet,
+        message: doc.message,
         lignes: doc.lignes,
         total: doc.total,
         acompte_pct: doc.acompte_pct,

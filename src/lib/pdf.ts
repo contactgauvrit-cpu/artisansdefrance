@@ -51,6 +51,7 @@ export type DocForPdf = {
   date_emission: string;
   date_validite?: string | null;
   objet?: string | null;
+  message?: string | null;
   lignes: Ligne[];
   total: number;
   acompte_pct: number;
@@ -145,6 +146,19 @@ export async function buildDocumentPdf(doc: DocForPdf): Promise<Uint8Array> {
     cy -= 14;
   }
   y = cy - 14;
+
+  // ---- Message / précisions (note d'intro) ----
+  if (doc.message) {
+    text("Note", M, y, 9, bold, COPPER);
+    y -= 13;
+    for (const ln of String(doc.message).split(/\r?\n/)) {
+      for (const w2 of wrap(san(ln) || " ", 95)) {
+        text(w2, M, y, 9, reg, INK);
+        y -= 12;
+      }
+    }
+    y -= 8;
+  }
 
   // ---- Tableau des lignes ----
   const colDesc = M;

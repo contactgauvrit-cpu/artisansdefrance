@@ -65,6 +65,7 @@ create table if not exists public.documents (
   date_emission   date not null default current_date,
   date_validite   date,
   objet           text,
+  message         text,
   lignes          jsonb not null default '[]'::jsonb,
   total           numeric(12,2) not null default 0,
   acompte_pct     int not null default 50,
@@ -79,6 +80,8 @@ create table if not exists public.documents (
   paye_at         timestamptz,
   devis_source_id uuid references public.documents(id) on delete set null
 );
+-- Ajout incrémental pour les bases déjà créées : message/précisions libre sur le document
+alter table public.documents add column if not exists message text;
 
 create index if not exists documents_created_at_idx on public.documents (created_at desc);
 create index if not exists documents_token_idx on public.documents (public_token);

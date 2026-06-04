@@ -44,6 +44,7 @@ export function DocForm({ clients }: { clients: ClientLite[] }) {
   const [client, setClient] = useState({ ...empty });
   const [saveClient, setSaveClient] = useState(true);
   const [objet, setObjet] = useState("");
+  const [message, setMessage] = useState("");
   const [acompte, setAcompte] = useState(50);
   const [conditions, setConditions] = useState(DEFAULT_CONDITIONS_DEVIS);
   const [editedCond, setEditedCond] = useState(false);
@@ -95,6 +96,7 @@ export function DocForm({ clients }: { clients: ClientLite[] }) {
         client_id: clientId || null,
         save_client: saveClient,
         objet,
+        message,
         conditions,
         acompte_pct: acompte,
         lignes: lignes.filter((l) => l.designation.trim()),
@@ -207,6 +209,15 @@ export function DocForm({ clients }: { clients: ClientLite[] }) {
             value={objet}
             onChange={(e) => setObjet(e.target.value)}
             placeholder="Ex. Rénovation salle de bain"
+          />
+        </label>
+        <label>
+          Message / précisions (optionnel)
+          <textarea
+            rows={3}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Note libre affichée sur le document : planning, ce qui est inclus / exclu, accès au chantier…"
           />
         </label>
         <div className="admin-lignes">

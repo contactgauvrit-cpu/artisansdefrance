@@ -18,6 +18,7 @@ export type PublicDoc = {
   created_at: string;
   date_validite?: string | null;
   objet?: string | null;
+  message?: string | null;
   lignes: Ligne[];
   total: number;
   acompte_pct: number;
@@ -74,6 +75,13 @@ export function DocumentView({ doc }: { doc: PublicDoc }) {
         <p className="docview-objet">
           <strong>Objet :</strong> {doc.objet}
         </p>
+      )}
+
+      {doc.message && (
+        <div className="docview-message">
+          <strong>Note</strong>
+          <p>{doc.message}</p>
+        </div>
       )}
 
       <table className="docview-table">

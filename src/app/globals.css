@@ -402,6 +402,9 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-hei
 .docview-total{display:flex;justify-content:space-between;font-size:16px;padding-top:10px}
 .docview-total strong{color:var(--copper-deep);font-size:20px}
 .docview-tva{font-size:12px;text-align:right}
+.docview-message{margin:8px 0 16px;padding:12px 15px;background:var(--copper-wash);border-radius:10px;font-size:14px;line-height:1.6}
+.docview-message strong{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--copper-deep);margin-bottom:5px}
+.docview-message p{margin:0;white-space:pre-wrap}
 .docview-acompte{margin:10px 0;padding:10px 14px;background:var(--copper-wash);border-radius:10px;font-size:15px}
 .docview-cond{font-size:13px;margin:14px 0}
 .docview-rib{margin:14px 0;font-size:14px}
