@@ -30,6 +30,14 @@ export function ScrollFX() {
     );
     document.querySelectorAll(".reveal, .reveal-mask").forEach((el) => io.observe(el));
 
+    // Filet de sécurité : ne JAMAIS laisser de contenu masqué si l'observer rate
+    // un élément (navigation par ancre, scroll instantané, navigateur capricieux).
+    const failsafe = window.setTimeout(() => {
+      document
+        .querySelectorAll(".reveal:not(.in), .reveal-mask:not(.in)")
+        .forEach((el) => el.classList.add("in"));
+    }, 2500);
+
     // Parallaxe discret : photo hero + coq filigrane (rAF-throttlé)
     const heroMedia = document.querySelector<HTMLElement>(".hero-media");
     const whyCoq = document.querySelector<HTMLElement>(".why-coq");
@@ -58,6 +66,7 @@ export function ScrollFX() {
     return () => {
       io.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(failsafe);
       root.classList.remove("anim");
     };
   }, []);

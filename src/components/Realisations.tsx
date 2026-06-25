@@ -18,7 +18,7 @@ export function Realisations() {
         </div>
         <div className="gallery" id="gallery">
           {REALISATIONS.map((r, i) => (
-            <figure className="rcard reveal-mask" style={stagger(i)} key={r.id}>
+            <figure className="rcard reveal" style={stagger(i)} key={r.id}>
               <ImageSlot
                 src={r.src}
                 alt={r.alt}
