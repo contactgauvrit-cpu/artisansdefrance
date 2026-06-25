@@ -62,6 +62,13 @@ export const DEPARTEMENTS: { num: string; nom: string; villes: string[] }[] = [
 
 /** Réalisations réelles (photos de chantiers Artisans de France). */
 export const REALISATIONS: { id: string; src: string; alt: string; title: string; tag: string }[] = [
+  { id: "jardin-paysager", src: "/assets/realisations/jardin-paysager-allee-resine.jpg", title: "Jardin paysager & allée résinée", tag: "Aménagement extérieur", alt: "Jardin paysager avec allée en gravillon résiné, massifs fleuris et palmiers, aménagé par Artisans de France" },
+  { id: "cour-resine", src: "/assets/realisations/allee-gravillon-resine-cour.jpg", title: "Cour en gravillon résiné", tag: "Aménagement extérieur", alt: "Cour de maison en gravillon résiné drainant avec inserts décoratifs, réalisée par Artisans de France" },
+  { id: "piscine-terrasse", src: "/assets/realisations/piscine-terrasse-bois-carrelage.jpg", title: "Piscine & terrasse bois", tag: "Aménagement extérieur", alt: "Piscine entourée d'une terrasse en bois et d'un carrelage, réalisée par Artisans de France" },
+  { id: "cloture-anthracite", src: "/assets/realisations/cloture-rigide-anthracite.jpg", title: "Clôture rigide anthracite", tag: "Aménagement extérieur", alt: "Clôture rigide anthracite avec lames occultantes posée par Artisans de France" },
+  { id: "nettoyage-toiture", src: "/assets/realisations/nettoyage-toiture-tuiles-1.jpg", title: "Nettoyage de toiture", tag: "Nettoyage", alt: "Toiture en tuiles nettoyée et démoussée par Artisans de France" },
+  { id: "tableau-onduleur", src: "/assets/realisations/tableau-electrique-onduleur.jpg", title: "Tableau électrique & onduleur", tag: "Électricité", alt: "Tableau électrique et onduleur solaire installés aux normes par Artisans de France" },
+  { id: "tasseaux-bois", src: "/assets/realisations/mur-tasseaux-bois-deco.jpg", title: "Mur en tasseaux bois", tag: "Rénovation", alt: "Mur décoratif en tasseaux de bois réalisé par Artisans de France" },
   { id: "peinture-deco", src: "/assets/realisations/peinture-decoration.jpg", title: "Peinture & décoration", tag: "Peinture", alt: "Chambre repeinte en vert sauge avec décoration, réalisée par Artisans de France" },
   { id: "terrasse-bois", src: "/assets/realisations/terrasse-bois.jpg", title: "Terrasse en bois", tag: "Aménagement extérieur", alt: "Terrasse en bois créée par Artisans de France dans un jardin" },
   { id: "sol-stratifie", src: "/assets/realisations/sol-stratifie-1.jpg", title: "Pose de sol stratifié", tag: "Rénovation", alt: "Pièce rénovée avec sol stratifié posé par Artisans de France" },
