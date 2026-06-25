@@ -43,7 +43,7 @@
   --script:var(--font-script),"Great Vibes",cursive;
   /* Layout */
   --maxw:1240px;
-  --gut:clamp(20px,5vw,64px);
+  --gut:clamp(26px,5vw,64px);
   --radius:14px;
 }
 
