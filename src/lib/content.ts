@@ -62,8 +62,8 @@ export const DEPARTEMENTS: { num: string; nom: string; villes: string[] }[] = [
 
 /** Réalisations réelles (photos de chantiers Artisans de France). */
 export const REALISATIONS: { id: string; src: string; alt: string; title: string; tag: string }[] = [
-  { id: "jardin-paysager", src: "/assets/realisations/jardin-paysager-allee-resine.jpg", title: "Jardin paysager & allée résinée", tag: "Aménagement extérieur", alt: "Jardin paysager avec allée en gravillon résiné, massifs fleuris et palmiers, aménagé par Artisans de France" },
-  { id: "cour-resine", src: "/assets/realisations/allee-gravillon-resine-cour.jpg", title: "Cour en gravillon résiné", tag: "Aménagement extérieur", alt: "Cour de maison en gravillon résiné drainant avec inserts décoratifs, réalisée par Artisans de France" },
+  { id: "jardin-paysager", src: "/assets/realisations/jardin-paysager-allee-resine.jpg", title: "Jardin paysager & béton désactivé", tag: "Aménagement extérieur", alt: "Jardin paysager avec terrasse en béton désactivé, massifs fleuris et palmiers, aménagé par Artisans de France" },
+  { id: "cour-resine", src: "/assets/realisations/allee-gravillon-resine-cour.jpg", title: "Cour en béton désactivé", tag: "Aménagement extérieur", alt: "Cour de maison en béton désactivé avec inserts décoratifs, réalisée par Artisans de France" },
   { id: "piscine-terrasse", src: "/assets/realisations/piscine-terrasse-bois-carrelage.jpg", title: "Piscine & terrasse bois", tag: "Aménagement extérieur", alt: "Piscine entourée d'une terrasse en bois et d'un carrelage, réalisée par Artisans de France" },
   { id: "cloture-anthracite", src: "/assets/realisations/cloture-rigide-anthracite.jpg", title: "Clôture rigide anthracite", tag: "Aménagement extérieur", alt: "Clôture rigide anthracite avec lames occultantes posée par Artisans de France" },
   { id: "nettoyage-toiture", src: "/assets/realisations/nettoyage-toiture-tuiles-1.jpg", title: "Nettoyage de toiture", tag: "Nettoyage", alt: "Toiture en tuiles nettoyée et démoussée par Artisans de France" },
