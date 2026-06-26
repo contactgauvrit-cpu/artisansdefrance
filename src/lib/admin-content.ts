@@ -1,10 +1,10 @@
 import { SITE } from "./content";
 
-/** Coordonnées bancaires (à renseigner en variables d'env Vercel). */
+/** Coordonnées bancaires affichées en bas des devis/factures (compte Revolut). */
 export const RIB = {
-  iban: process.env.RIB_IBAN ?? "",
-  bic: process.env.RIB_BIC ?? "",
-  titulaire: process.env.RIB_TITULAIRE ?? SITE.name,
+  iban: "FR76 2823 3000 0189 2745 2107 134",
+  bic: "REVOFRP2",
+  titulaire: "Willy Gauvrit",
 };
 
 /** Mention TVA obligatoire (franchise en base). */
