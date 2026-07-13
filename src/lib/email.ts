@@ -4,6 +4,7 @@ type LeadEmail = {
   nom: string;
   tel: string;
   email: string;
+  code_postal?: string;
   type: string;
   message: string;
 };
@@ -73,6 +74,7 @@ export async function sendLeadEmail(lead: LeadEmail): Promise<SendResult> {
         <tr><td style="padding:6px 14px 6px 0;color:#6B7280;width:120px">Nom</td><td><strong>${esc(lead.nom)}</strong></td></tr>
         <tr><td style="padding:6px 14px 6px 0;color:#6B7280">Téléphone</td><td><a href="tel:${esc(lead.tel)}" style="color:#9A5C26">${esc(lead.tel)}</a></td></tr>
         <tr><td style="padding:6px 14px 6px 0;color:#6B7280">E-mail</td><td>${lead.email ? `<a href="mailto:${esc(lead.email)}" style="color:#9A5C26">${esc(lead.email)}</a>` : "—"}</td></tr>
+        <tr><td style="padding:6px 14px 6px 0;color:#6B7280">Code postal</td><td><strong>${esc(lead.code_postal || "—")}</strong></td></tr>
         <tr><td style="padding:6px 14px 6px 0;color:#6B7280">Type de projet</td><td>${esc(lead.type)}</td></tr>
       </table>
       <p style="font-size:15px;color:#2B2B2E;white-space:pre-wrap;border-left:3px solid #B87333;padding:4px 0 4px 14px;margin:16px 0">${esc(lead.message)}</p>

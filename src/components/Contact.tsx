@@ -11,11 +11,12 @@ import {
   IconPhone,
 } from "@/lib/icons";
 
-type FieldKey = "nom" | "tel" | "email" | "type" | "message";
+type FieldKey = "nom" | "tel" | "email" | "code_postal" | "type" | "message";
 const EMPTY: Record<FieldKey, boolean> = {
   nom: false,
   tel: false,
   email: false,
+  code_postal: false,
   type: false,
   message: false,
 };
@@ -35,16 +36,19 @@ export function Contact() {
     const nom = String(data.get("nom") ?? "").trim();
     const tel = String(data.get("tel") ?? "");
     const email = String(data.get("email") ?? "").trim();
+    const code_postal = String(data.get("code_postal") ?? "").trim();
     const type = String(data.get("type") ?? "");
     const message = String(data.get("message") ?? "").trim();
 
     const telOk = /^(\+33|0)\d{9}$/.test(tel.replace(/[\s.\-]/g, ""));
     const emailOk = !email || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+    const cpOk = /^\d{5}$/.test(code_postal);
 
     const next: Record<FieldKey, boolean> = {
       nom: !nom,
       tel: !telOk,
       email: !emailOk,
+      code_postal: !cpOk,
       type: !type,
       message: !message,
     };
@@ -64,7 +68,7 @@ export function Contact() {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nom, tel, email, type, message }),
+        body: JSON.stringify({ nom, tel, email, code_postal, type, message }),
       });
       if (!res.ok) throw new Error("bad status");
       setDone(true);
@@ -125,17 +129,35 @@ export function Contact() {
                     <span className="err">Numéro de téléphone invalide.</span>
                   </div>
                 </div>
-                <div className={`field${invalid.email ? " invalid" : ""}`}>
-                  <label htmlFor="f-email">E-mail</label>
-                  <input
-                    type="email"
-                    id="f-email"
-                    name="email"
-                    autoComplete="email"
-                    placeholder="vous@exemple.fr"
-                    onInput={() => clear("email")}
-                  />
-                  <span className="err">Adresse e-mail invalide.</span>
+                <div className="form-row">
+                  <div className={`field${invalid.email ? " invalid" : ""}`}>
+                    <label htmlFor="f-email">E-mail</label>
+                    <input
+                      type="email"
+                      id="f-email"
+                      name="email"
+                      autoComplete="email"
+                      placeholder="vous@exemple.fr"
+                      onInput={() => clear("email")}
+                    />
+                    <span className="err">Adresse e-mail invalide.</span>
+                  </div>
+                  <div className={`field${invalid.code_postal ? " invalid" : ""}`}>
+                    <label htmlFor="f-cp">
+                      Code postal <span className="req">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      id="f-cp"
+                      name="code_postal"
+                      autoComplete="postal-code"
+                      maxLength={5}
+                      placeholder="85000"
+                      onInput={() => clear("code_postal")}
+                    />
+                    <span className="err">Code postal à 5 chiffres.</span>
+                  </div>
                 </div>
                 <div className={`field${invalid.type ? " invalid" : ""}`}>
                   <label htmlFor="f-type">

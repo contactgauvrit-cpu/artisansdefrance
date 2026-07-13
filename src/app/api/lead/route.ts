@@ -6,6 +6,7 @@ type Lead = {
   nom?: string;
   tel?: string;
   email?: string;
+  code_postal?: string;
   type?: string;
   message?: string;
 };
@@ -26,6 +27,7 @@ export async function POST(req: Request) {
   const nom = (body.nom ?? "").trim();
   const tel = (body.tel ?? "").trim();
   const email = (body.email ?? "").trim();
+  const code_postal = (body.code_postal ?? "").trim();
   const type = (body.type ?? "").trim();
   const message = (body.message ?? "").trim();
 
@@ -39,9 +41,12 @@ export async function POST(req: Request) {
   // 2) Persistance Supabase
   const supabase = getSupabase();
   if (supabase) {
-    const { error } = await supabase
-      .from("leads")
-      .insert({ nom, tel, email: email || null, type, message, source: "site" });
+    const base = { nom, tel, email: email || null, type, message, source: "site" };
+    let { error } = await supabase.from("leads").insert({ ...base, code_postal: code_postal || null });
+    if (error && /code_postal|column|schema cache/i.test(error.message)) {
+      // colonne code_postal pas encore ajoutée en base : on enregistre le lead sans, pour ne rien perdre
+      ({ error } = await supabase.from("leads").insert(base));
+    }
     if (error) {
       console.error("[lead] erreur Supabase:", error.message);
       return NextResponse.json({ ok: false, error: "db" }, { status: 500 });
@@ -57,7 +62,7 @@ export async function POST(req: Request) {
   }
 
   // 3) Notifications e-mail (Brevo) — n'échouent jamais le formulaire (devis déjà en base)
-  const lead = { nom, tel, email, type, message };
+  const lead = { nom, tel, email, code_postal, type, message };
   let emailRes = { sent: false, status: 0, detail: "" };
   let ackRes = { sent: false, status: 0, detail: "" };
   try {

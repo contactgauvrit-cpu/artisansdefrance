@@ -10,12 +10,15 @@ create table if not exists public.leads (
   nom         text not null,
   tel         text not null,
   email       text,
+  code_postal text,
   type        text not null,
   message     text not null,
   source      text default 'site',
   commune     text,
   service     text
 );
+-- Ajout incrémental pour les bases déjà créées : code postal du demandeur
+alter table public.leads add column if not exists code_postal text;
 
 -- Sécurité au niveau des lignes (RLS)
 alter table public.leads enable row level security;
